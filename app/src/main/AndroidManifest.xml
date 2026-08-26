@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"> // declara um app Android
 
     <application
         android:theme="@style/AppTheme"
-        android:label="MediLembrete">
+        android:label="MediLembrete"> <!-- define o nome do app -->
 
-        <activity
+        <!-- cria uma activity chamada MainActivity -->
+        <activity  
             android:name=".MainActivity"
             android:exported="true">
 
-            <intent-filter>
+            <!-- abre a activity principal quando o usuário clicar no ícone -->
+            <intent-filter> 
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
