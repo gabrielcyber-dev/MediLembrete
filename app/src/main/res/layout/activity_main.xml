@@ -5,21 +5,69 @@
 
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent" 
+    android:layout_height="match_parent"
+    android:layout_width="match_parent" 
     android:orientation="vertical"
-    android:gravity="center"> <!-- deixa os itens centralizados -->
+    android:gravity="center_horizontal"
+    android:padding="16dp"> <!-- deixa os itens centralizados -->
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="MediLembrete" /> <!-- cria um texto -->
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="Boa noite"
+            android:layout_marginBottom="8dp"/>
+        
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="MediLembrete" 
+            android:textSize="24sp"
+            android:textStyle="bold"/> <!-- cria um texto -->
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="Quinta-feira, 27 de Agosto"/>
+
+            <!-- CARD dentro do app -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/card_background"
+                android:padding="16dp"
+                android:layout_marginBottom="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Próximo lembrete"
+                        android:textSize="14sp"
+                        android:layout_marginBottom="8dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Losartana"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="4dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="50 mg — 1 comprimido — 08:00"
+                        android:textSize="14sp" />
+
+            </LinearLayout>    
+        
+        
 
         <Button 
-        android:id="@+id/btnAdicionar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Adicionar remédio"/> <!-- cria um botão e define um id -->
+            android:id="@+id/btnAdicionar"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="Adicionar remédio"/> <!-- cria um botão e define um id -->
 
 </LinearLayout>
 
