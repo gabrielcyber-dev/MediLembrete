@@ -13,4 +13,19 @@ android {
         versionCode 1
         versionName '1.0'
     }
+
+    // Necessário para o Room compilar com anotações Java (@Insert, @Query etc.)
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    def room_version = "2.6.1"
+    implementation "androidx.room:room-runtime:$room_version"
+    annotationProcessor "androidx.room:room-compiler:$room_version"
+
+    // LiveData usado pelos DAOs para observar mudanças no banco na tela
+    implementation "androidx.lifecycle:lifecycle-livedata:2.7.0"
 }
