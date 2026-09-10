@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Título -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Novo medicamento"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="24dp" />
+
+        <!-- Nome -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nome do medicamento"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/edtNomeMedicamento"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Ex.: Losartana"
+            android:inputType="text"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Dosagem -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Dosagem"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/edtDosagem"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Ex.: 50 mg"
+            android:inputType="text"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Quantidade -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Quantidade por vez"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/edtQuantidade"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Ex.: 1 comprimido"
+            android:inputType="text"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Frequência -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Frequência"
+            android:textStyle="bold" />
+
+        <Spinner
+            android:id="@+id/spinnerFrequencia"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Duração -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Duração"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/edtDuracao"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Ex.: 7 dias"
+            android:inputType="number"
+            android:layout_marginBottom="24dp" />
+
+        <!-- Botão salvar -->
+        <Button
+            android:id="@+id/btnSalvar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Salvar medicamento" />
+
+    </LinearLayout>
+
+</ScrollView>
