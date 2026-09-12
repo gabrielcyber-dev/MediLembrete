@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -9,95 +8,87 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="24dp">
 
-        <!-- Título -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Novo medicamento"
             android:textSize="24sp"
-            android:textStyle="bold"
-            android:layout_marginBottom="24dp" />
-
-        <!-- Nome -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Nome do medicamento"
             android:textStyle="bold" />
 
         <EditText
             android:id="@+id/edtNomeMedicamento"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Ex.: Losartana"
-            android:inputType="text"
-            android:layout_marginBottom="16dp" />
-
-        <!-- Dosagem -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Dosagem"
-            android:textStyle="bold" />
+            android:hint="Nome do medicamento"
+            android:inputType="text" />
 
         <EditText
             android:id="@+id/edtDosagem"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Ex.: 50 mg"
-            android:inputType="text"
-            android:layout_marginBottom="16dp" />
-
-        <!-- Quantidade -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Quantidade por vez"
-            android:textStyle="bold" />
+            android:hint="Dosagem"
+            android:inputType="text" />
 
         <EditText
             android:id="@+id/edtQuantidade"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Ex.: 1 comprimido"
-            android:inputType="text"
-            android:layout_marginBottom="16dp" />
+            android:hint="Quantidade por dose"
+            android:inputType="text" />
 
-        <!-- Frequência -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Frequência"
+            android:layout_marginTop="16dp"
+            android:text="Horário inicial"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/edtHorarioInicial"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Ex.: 08:00"
+            android:inputType="time" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Intervalo"
             android:textStyle="bold" />
 
         <Spinner
-            android:id="@+id/spinnerFrequencia"
+            android:id="@+id/spinnerIntervalo"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp" />
+            android:layout_height="wrap_content" />
 
-        <!-- Duração -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Duração"
+            android:layout_marginTop="16dp"
+            android:text="Duração do tratamento"
             android:textStyle="bold" />
 
         <EditText
             android:id="@+id/edtDuracao"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Ex.: 7 dias"
-            android:inputType="number"
-            android:layout_marginBottom="24dp" />
+            android:hint="Quantidade de dias"
+            android:inputType="number" />
 
-        <!-- Botão salvar -->
+        <CheckBox
+            android:id="@+id/chkDuracaoIndefinida"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Duração indefinida" />
+
         <Button
             android:id="@+id/btnSalvar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
             android:text="Salvar medicamento" />
 
     </LinearLayout>

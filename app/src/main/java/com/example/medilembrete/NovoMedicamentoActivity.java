@@ -2,10 +2,14 @@ package com.example.medilembrete;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import com.example.medilembrete.model.Medicamento;
 
 public class NovoMedicamentoActivity extends Activity {
 
@@ -24,14 +28,40 @@ public class NovoMedicamentoActivity extends Activity {
         EditText edtQuantidade =
                 findViewById(R.id.edtQuantidade);
 
+        EditText edtHorarioInicial =
+                findViewById(R.id.edtHorarioInicial);
+
+        Spinner spinnerIntervalo =
+                findViewById(R.id.spinnerIntervalo);
+
         EditText edtDuracao =
                 findViewById(R.id.edtDuracao);
 
-        Spinner spinnerFrequencia =
-                findViewById(R.id.spinnerFrequencia);
+        CheckBox chkDuracaoIndefinida =
+                findViewById(R.id.chkDuracaoIndefinida);
 
         Button btnSalvar =
                 findViewById(R.id.btnSalvar);
+
+        String[] intervalos = {
+                "6 horas",
+                "8 horas",
+                "12 horas",
+                "24 horas"
+        };
+
+        ArrayAdapter<String> adapter =
+                new ArrayAdapter<>(
+                        this,
+                        android.R.layout.simple_spinner_item,
+                        intervalos
+                );
+
+        adapter.setDropDownViewResource(
+                android.R.layout.simple_spinner_dropdown_item
+        );
+
+        spinnerIntervalo.setAdapter(adapter);
 
         btnSalvar.setOnClickListener(v -> {
 
@@ -44,26 +74,52 @@ public class NovoMedicamentoActivity extends Activity {
             String quantidade =
                     edtQuantidade.getText().toString();
 
-            String frequencia =
-                    spinnerFrequencia.getSelectedItem().toString();
+            String horarioInicial =
+                    edtHorarioInicial.getText().toString();
 
-            String duracaoTexto =
-                    edtDuracao.getText().toString();
+            String intervaloTexto =
+                    spinnerIntervalo
+                            .getSelectedItem()
+                            .toString();
 
-            int duracao =
-                    Integer.parseInt(duracaoTexto);
+            int intervaloHoras =
+                    Integer.parseInt(
+                            intervaloTexto
+                                    .replace(" horas", "")
+                    );
 
-            Medicamento medicamento = new Medicamento(
-                    nome,
-                    dosagem,
-                    quantidade,
-                    frequencia,
-                    duracao
-            );
+            boolean duracaoIndefinida =
+                    chkDuracaoIndefinida.isChecked();
+
+            int duracaoDias = 0;
+
+            if (!duracaoIndefinida) {
+
+                String duracaoTexto =
+                        edtDuracao
+                                .getText()
+                                .toString();
+
+                duracaoDias =
+                        Integer.parseInt(duracaoTexto);
+            }
+
+            Medicamento medicamento =
+                    new Medicamento(
+                            0,
+                            nome,
+                            dosagem,
+                            quantidade,
+                            horarioInicial,
+                            intervaloHoras,
+                            duracaoDias,
+                            duracaoIndefinida
+                    );
 
             Toast.makeText(
                     this,
-                    "Medicamento criado: " + medicamento.getNome(),
+                    "Medicamento criado: "
+                            + medicamento.getNome(),
                     Toast.LENGTH_SHORT
             ).show();
         });
