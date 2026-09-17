@@ -1,12 +1,13 @@
 package com.example.medilembrete;
 
-import android.app.Activity;
 import android.content.Intent; // necessário para abrir outra Activity
 import android.os.Bundle;
 import android.widget.Button; // necessário para criar botões
 
-// cria uma classe chamada "Main Activity" que herda Activity
-public class MainActivity extends Activity {
+import androidx.appcompat.app.AppCompatActivity;
+
+// cria uma classe chamada "Main Activity" que herda AppCompatActivity
+public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
