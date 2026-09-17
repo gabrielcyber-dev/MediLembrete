@@ -12,5 +12,34 @@ android {
         targetSdk 35
         versionCode 1
         versionName '1.0'
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+
+    // Necessário para o Room compilar com anotações Java (@Insert, @Query etc.)
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    def room_version = "2.6.1"
+    implementation "androidx.room:room-runtime:$room_version"
+    annotationProcessor "androidx.room:room-compiler:$room_version"
+
+    // LiveData usado pelos DAOs para observar mudanças no banco na tela
+    implementation "androidx.lifecycle:lifecycle-livedata:2.7.0"
+
+    // Testes unitários puros (JVM, sem emulador) - ex: Converters
+    testImplementation 'junit:junit:4.13.2'
+
+    // Testes instrumentados (rodam em device/emulador) - DAOs do Room usam
+    // SQLite de verdade, então precisam do runtime do Android
+    androidTestImplementation 'androidx.test:core:1.6.1'
+    androidTestImplementation 'androidx.test.ext:junit:1.2.1'
+    androidTestImplementation 'androidx.test:runner:1.6.2'
+    androidTestImplementation "androidx.room:room-testing:$room_version"
+    // InstantTaskExecutorRule: faz o LiveData atualizar de forma síncrona no teste
+    androidTestImplementation 'androidx.arch.core:core-testing:2.2.0'
 }
