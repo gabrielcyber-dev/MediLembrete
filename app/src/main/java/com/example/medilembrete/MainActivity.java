@@ -1,24 +1,31 @@
 package com.example.medilembrete;
 
-import android.content.Intent; // necessário para abrir outra Activity
+import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Button; // necessário para criar botões
+import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-// cria uma classe chamada "Main Activity" que herda AppCompatActivity
 public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main); // carrega a parte visual
 
-        Button btnAdicionar = findViewById(R.id.btnAdicionar); // chama o botão via id
+        setContentView(R.layout.activity_main);
+
+        Button btnAdicionar = findViewById(R.id.btnAdicionar);
+
+        // Abre a Tela 2 - Cadastro de Medicamento, que grava no banco (Room).
+        // A NovoMedicamentoActivity (Gabriel) segue no projeto e sera unificada
+        // com esta tela quando o time definir o modelo unico de dados.
         btnAdicionar.setOnClickListener(v -> {
-            startActivity(new Intent(MainActivity.this, CadastroMedicamentoActivity.class));
+            Intent intent = new Intent(
+                    MainActivity.this,
+                    CadastroMedicamentoActivity.class
+            );
+
+            startActivity(intent);
         });
     }
-
-    
 }

@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"> // declara um app Android
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"> <!-- declara um app Android -->
 
     <application
         android:theme="@style/AppTheme"
         android:label="MediLembrete"> <!-- define o nome do app -->
 
+        <activity
+            android:name=".NovoMedicamentoActivity" />
+        
         <!-- cria uma activity chamada MainActivity -->
         <activity  
             android:name=".MainActivity"
