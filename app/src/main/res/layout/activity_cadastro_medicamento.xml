@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- Tela 2 - Cadastro de Medicamento (rascunho funcional).
+     Layout simples de propósito: o visual definitivo desta tela é
+     tarefa do Nicolas no cronograma; aqui o foco é a lógica de
+     cadastro e armazenamento (tarefa do Guilherme/Gabriel). -->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cadastro de Medicamento"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="16dp" />
+
+    <EditText
+        android:id="@+id/etNome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nome do medicamento"
+        android:layout_marginBottom="8dp" />
+
+    <EditText
+        android:id="@+id/etDosagem"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Dosagem (ex: 50 mg)"
+        android:layout_marginBottom="8dp" />
+
+    <EditText
+        android:id="@+id/etQuantidade"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Quantidade por dose (ex: 1)"
+        android:inputType="number"
+        android:layout_marginBottom="8dp" />
+
+    <EditText
+        android:id="@+id/etDuracaoDias"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Duração do tratamento em dias (em branco = uso contínuo)"
+        android:inputType="number"
+        android:layout_marginBottom="8dp" />
+
+    <EditText
+        android:id="@+id/etObservacoes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Observações (opcional)"
+        android:layout_marginBottom="16dp" />
+
+    <Button
+        android:id="@+id/btnSalvar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Salvar medicamento" />
+
+</LinearLayout>
