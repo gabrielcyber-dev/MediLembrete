@@ -1,10 +1,11 @@
 package com.example.medilembrete;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.medilembrete.data.AppDatabase;
 import com.example.medilembrete.data.MedicamentoRepository;
@@ -18,7 +19,7 @@ import java.util.concurrent.TimeUnit;
  * aqui; os horários de administração ficam para a Tela 3 (Configuração
  * de Horários), num passo posterior sobre o id retornado.
  */
-public class CadastroMedicamentoActivity extends Activity {
+public class CadastroMedicamentoActivity extends AppCompatActivity {
 
     private EditText etNome;
     private EditText etDosagem;

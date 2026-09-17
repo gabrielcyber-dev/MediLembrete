@@ -24,6 +24,10 @@ android {
 }
 
 dependencies {
+    // AppCompatActivity: da ciclo de vida as telas, necessario para observar
+    // os LiveData dos DAOs (Activity comum nao e um LifecycleOwner)
+    implementation "androidx.appcompat:appcompat:1.7.0"
+
     def room_version = "2.6.1"
     implementation "androidx.room:room-runtime:$room_version"
     annotationProcessor "androidx.room:room-compiler:$room_version"
