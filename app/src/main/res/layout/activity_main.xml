@@ -3,11 +3,20 @@
 <!-- match = preenchimento completo -->
 <!-- wrap = preenchimento necessário -->
 
-<!-- ScrollView permite que a tela role quando o conteúdo for maior que a tela -->
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#F2F5FD">
+
+    <!-- ScrollView permite que a tela role quando o conteúdo for maior que a tela -->
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="1"
     android:fillViewport="true">
     <!-- fillViewport="true": Força o layout a preencher 100% da altura da tela mesmo quando tiver poucos itens -->
 
@@ -285,7 +294,7 @@
 
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="22dp"
             android:layout_marginBottom="8dp"
             android:text="Dipirona"
             android:textColor="#1E293B"
@@ -352,12 +361,112 @@
 
     <Button
         android:id="@+id/btnAdicionar"
-        android:layout_width="162dp"
+        android:layout_width="309dp"
         android:layout_height="wrap_content"
         android:background="@drawable/bg_botao_arredondado"
-        android:text="Adicionar remédio"
+        android:text="⊕   Adicionar medicamento"
+        android:textAllCaps="false"
         android:textColor="#fff"
-        android:textSize="13sp"/>
+        android:layout_marginTop="24dp"
+        android:textSize="18sp" />
 
 </LinearLayout>
 </ScrollView>
+
+    <!-- Barra fixa inferior -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:background="#2196F3"
+        android:elevation="8dp">
+
+        <!-- Barra fixa (INÍCIO) -->
+        <LinearLayout
+            android:id="@+id/menuInicio"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:clickable="true"
+            android:focusable="true">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="⌂"
+                android:textSize="21sp"
+                android:textColor="#FFFF"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Início"
+                android:textSize="12sp"
+                android:textColor="#FFFF"/>
+
+        </LinearLayout>
+
+
+        <!-- Barra fixa (MEDICAMENTOS) -->
+        <LinearLayout
+            android:id="@+id/menuMedicamentos"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:clickable="true"
+            android:focusable="true">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="▣"
+                android:textSize="22sp"
+                android:textColor="#FFFF"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Medicamentos"
+                android:textSize="12sp"
+                android:textColor="#FFFF"/>
+
+        </LinearLayout>
+
+
+        <!-- Barra fixa (HISTÓRICO) -->
+        <LinearLayout
+            android:id="@+id/menuHistorico"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:clickable="true"
+            android:focusable="true">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="◷"
+                android:textSize="24sp"
+                android:textColor="#FFFF"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Histórico"
+                android:textSize="12sp"
+                android:textColor="#FFFF"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
+
+
