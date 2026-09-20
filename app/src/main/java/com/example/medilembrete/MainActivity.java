@@ -1,11 +1,12 @@
 package com.example.medilembrete;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 
-public class MainActivity extends Activity {
+import androidx.appcompat.app.AppCompatActivity;
+
+public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -15,10 +16,13 @@ public class MainActivity extends Activity {
 
         Button btnAdicionar = findViewById(R.id.btnAdicionar);
 
+        // Abre a Tela 2 - Cadastro de Medicamento, que grava no banco (Room).
+        // A NovoMedicamentoActivity (Gabriel) segue no projeto e sera unificada
+        // com esta tela quando o time definir o modelo unico de dados.
         btnAdicionar.setOnClickListener(v -> {
             Intent intent = new Intent(
                     MainActivity.this,
-                    NovoMedicamentoActivity.class
+                    CadastroMedicamentoActivity.class
             );
 
             startActivity(intent);
