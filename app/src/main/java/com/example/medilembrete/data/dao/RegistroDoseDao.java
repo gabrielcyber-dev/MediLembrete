@@ -3,6 +3,7 @@ package com.example.medilembrete.data.dao;
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Insert;
+import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Update;
 
@@ -16,6 +17,15 @@ public interface RegistroDoseDao {
 
     @Insert
     long inserir(RegistroDose registro);
+
+    /**
+     * Insere a dose apenas se ainda nao existir uma para o mesmo medicamento no
+     * mesmo instante (o indice unico da tabela garante isso), devolvendo -1
+     * quando ignora. Deixa a geracao das doses do dia poder rodar quantas vezes
+     * for preciso sem duplicar nada.
+     */
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    long inserirSeNaoExistir(RegistroDose registro);
 
     @Update
     void atualizar(RegistroDose registro);
@@ -47,6 +57,19 @@ public interface RegistroDoseDao {
             + "WHERE status = 'PENDENTE' AND data_hora_programada >= :agora "
             + "ORDER BY data_hora_programada ASC LIMIT 1")
     LiveData<RegistroDose> proximaDosePendente(long agora);
+
+    @Query("SELECT * FROM registros_dose WHERE id = :id")
+    RegistroDose buscarPorIdSync(long id);
+
+    /** Registra a dose como tomada, guardando o instante em que isso aconteceu. */
+    @Query("UPDATE registros_dose SET status = 'TOMADO', data_hora_registro = :dataHoraRegistro "
+            + "WHERE id = :id AND status != 'TOMADO'")
+    int marcarComoTomada(long id, long dataHoraRegistro);
+
+    /** Marca como perdidas todas as pendentes cujo horário já passou do limite. */
+    @Query("UPDATE registros_dose SET status = 'PERDIDO' "
+            + "WHERE status = 'PENDENTE' AND data_hora_programada < :limite")
+    int marcarPendentesAtrasadasComoPerdidas(long limite);
 
     /** Doses pendentes cujo horário já passou - usado para marcar as perdidas. */
     @Query("SELECT * FROM registros_dose "

@@ -25,4 +25,8 @@ public interface HorarioDao {
 
     @Query("SELECT * FROM horarios WHERE medicamento_id = :medicamentoId ORDER BY horario ASC")
     LiveData<List<Horario>> listarPorMedicamento(long medicamentoId);
+
+    /** Mesma listagem, em versao sincrona, para usar em background. */
+    @Query("SELECT * FROM horarios WHERE medicamento_id = :medicamentoId ORDER BY horario ASC")
+    List<Horario> listarPorMedicamentoSync(long medicamentoId);
 }

@@ -3,6 +3,7 @@ package com.example.medilembrete.data.dao;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 import android.content.Context;
 
@@ -219,5 +220,95 @@ public class RegistroDoseDaoTest {
                 registroDoseDao.historicoCompleto());
 
         assertEquals(0, historico.size());
+    }
+
+    @Test
+    public void inserirSeNaoExistir_ignoraDoseRepetidaDoMesmoMedicamentoNoMesmoInstante() throws InterruptedException {
+        long medicamentoId = inserirMedicamento("Losartana");
+        long programada = hojeAs(8);
+
+        long primeira = registroDoseDao.inserirSeNaoExistir(
+                new RegistroDose(medicamentoId, programada, null, StatusDose.PENDENTE));
+        long repetida = registroDoseDao.inserirSeNaoExistir(
+                new RegistroDose(medicamentoId, programada, null, StatusDose.PENDENTE));
+
+        assertTrue("a primeira insercao deve gerar id", primeira > 0);
+        assertEquals("a repetida deve ser ignorada", -1L, repetida);
+        assertEquals(1, LiveDataTestUtil.getOrAwaitValue(
+                registroDoseDao.historicoCompleto()).size());
+    }
+
+    @Test
+    public void inserirSeNaoExistir_permiteMesmoInstanteParaMedicamentosDiferentes() throws InterruptedException {
+        long idA = inserirMedicamento("Losartana");
+        long idB = inserirMedicamento("Metformina");
+        long programada = hojeAs(8);
+
+        registroDoseDao.inserirSeNaoExistir(new RegistroDose(idA, programada, null, StatusDose.PENDENTE));
+        registroDoseDao.inserirSeNaoExistir(new RegistroDose(idB, programada, null, StatusDose.PENDENTE));
+
+        assertEquals(2, LiveDataTestUtil.getOrAwaitValue(
+                registroDoseDao.historicoCompleto()).size());
+    }
+
+    @Test
+    public void marcarComoTomada_gravaStatusEHoraDoRegistro() {
+        long medicamentoId = inserirMedicamento("Losartana");
+        long id = registroDoseDao.inserir(
+                new RegistroDose(medicamentoId, hojeAs(8), null, StatusDose.PENDENTE));
+        long instanteDoRegistro = hojeAs(8) + 5 * 60 * 1000L;
+
+        int alteradas = registroDoseDao.marcarComoTomada(id, instanteDoRegistro);
+
+        assertEquals(1, alteradas);
+        RegistroDose atualizada = registroDoseDao.buscarPorIdSync(id);
+        assertEquals(StatusDose.TOMADO, atualizada.getStatus());
+        assertEquals(Long.valueOf(instanteDoRegistro), atualizada.getDataHoraRegistro());
+    }
+
+    @Test
+    public void marcarComoTomada_naoMexeEmDoseJaTomada() {
+        long medicamentoId = inserirMedicamento("Losartana");
+        long primeiroRegistro = hojeAs(8);
+        long id = registroDoseDao.inserir(
+                new RegistroDose(medicamentoId, hojeAs(8), null, StatusDose.PENDENTE));
+        registroDoseDao.marcarComoTomada(id, primeiroRegistro);
+
+        int alteradas = registroDoseDao.marcarComoTomada(id, hojeAs(20));
+
+        assertEquals("nao deve regravar a hora de uma dose ja tomada", 0, alteradas);
+        assertEquals(Long.valueOf(primeiroRegistro),
+                registroDoseDao.buscarPorIdSync(id).getDataHoraRegistro());
+    }
+
+    @Test
+    public void marcarComoTomada_recuperaDosePerdida() {
+        long medicamentoId = inserirMedicamento("Losartana");
+        long id = registroDoseDao.inserir(
+                new RegistroDose(medicamentoId, hojeAs(8), null, StatusDose.PERDIDO));
+
+        int alteradas = registroDoseDao.marcarComoTomada(id, hojeAs(9));
+
+        // tomar atrasado ainda e melhor que nao tomar: a dose sai de PERDIDO
+        assertEquals(1, alteradas);
+        assertEquals(StatusDose.TOMADO, registroDoseDao.buscarPorIdSync(id).getStatus());
+    }
+
+    @Test
+    public void marcarPendentesAtrasadasComoPerdidas_soAfetaAsPendentesComHorarioPassado() {
+        long medicamentoId = inserirMedicamento("Losartana");
+        long idAtrasada = registroDoseDao.inserir(
+                new RegistroDose(medicamentoId, hojeAs(8), null, StatusDose.PENDENTE));
+        long idTomada = registroDoseDao.inserir(
+                new RegistroDose(medicamentoId, hojeAs(9), hojeAs(9), StatusDose.TOMADO));
+        long idFutura = registroDoseDao.inserir(
+                new RegistroDose(medicamentoId, hojeAs(20), null, StatusDose.PENDENTE));
+
+        int alteradas = registroDoseDao.marcarPendentesAtrasadasComoPerdidas(hojeAs(12));
+
+        assertEquals(1, alteradas);
+        assertEquals(StatusDose.PERDIDO, registroDoseDao.buscarPorIdSync(idAtrasada).getStatus());
+        assertEquals(StatusDose.TOMADO, registroDoseDao.buscarPorIdSync(idTomada).getStatus());
+        assertEquals(StatusDose.PENDENTE, registroDoseDao.buscarPorIdSync(idFutura).getStatus());
     }
 }

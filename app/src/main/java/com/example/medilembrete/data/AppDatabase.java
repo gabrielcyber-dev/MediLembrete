@@ -29,7 +29,7 @@ import java.util.concurrent.Executors;
  */
 @Database(
         entities = {Medicamento.class, Horario.class, RegistroDose.class},
-        version = 2,
+        version = 3,
         exportSchema = false
 )
 @TypeConverters(Converters.class)

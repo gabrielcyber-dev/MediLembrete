@@ -94,4 +94,22 @@ public class MedicamentoDaoTest {
         List<Medicamento> todos = LiveDataTestUtil.getOrAwaitValue(dao.listarTodos());
         assertTrue(todos.isEmpty());
     }
+
+    @Test
+    public void listarAtivosNoPeriodoSync_incluiUsoContinuoEOsQueCobremODia() {
+        long hoje = 1_800_000_000_000L;
+        long umDia = 24L * 60 * 60 * 1000;
+        long amanha = hoje + umDia;
+
+        dao.inserir(new Medicamento("Continuo", "50 mg", 1, hoje - 10 * umDia, null, null));
+        dao.inserir(new Medicamento("Termina hoje", "50 mg", 1, hoje - 5 * umDia, hoje + 3600_000L, null));
+        dao.inserir(new Medicamento("Terminou ontem", "50 mg", 1, hoje - 5 * umDia, hoje - umDia, null));
+        dao.inserir(new Medicamento("Comeca amanha", "50 mg", 1, amanha + 3600_000L, null, null));
+
+        List<Medicamento> ativos = dao.listarAtivosNoPeriodoSync(hoje, amanha);
+
+        assertEquals(2, ativos.size());
+        assertEquals("Continuo", ativos.get(0).getNome());
+        assertEquals("Termina hoje", ativos.get(1).getNome());
+    }
 }

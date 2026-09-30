@@ -78,4 +78,18 @@ public class HorarioDaoTest {
                 horarioDao.listarPorMedicamento(medicamentoId));
         assertTrue(horarios.isEmpty());
     }
+
+    @Test
+    public void listarPorMedicamentoSync_retornaOsMesmosHorariosSemLiveData() {
+        long medicamentoId = medicamentoDao.inserir(
+                new Medicamento("Losartana", "50 mg", 1, 0L, null, null));
+        horarioDao.inserir(new Horario(medicamentoId, "20:00"));
+        horarioDao.inserir(new Horario(medicamentoId, "08:00"));
+
+        List<Horario> horarios = horarioDao.listarPorMedicamentoSync(medicamentoId);
+
+        assertEquals(2, horarios.size());
+        assertEquals("08:00", horarios.get(0).getHorario());
+        assertEquals("20:00", horarios.get(1).getHorario());
+    }
 }
