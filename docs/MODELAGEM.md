@@ -42,7 +42,8 @@ Um medicamento tem N horários (ex: 08:00, 14:00, 20:00).
 - **`ForeignKey` com `onDelete = CASCADE`**: excluir um medicamento remove automaticamente seus horários e histórico de doses.
 - Acesso ao banco sempre fora da main thread — `AppDatabase` expõe um `ExecutorService` (`AppDatabase.executor`) para isso.
 - **Índice em `data_hora_programada`**: todas as consultas de dose filtram ou ordenam por essa coluna.
-- **Enquanto o app está em desenvolvimento**, `AppDatabase` usa `fallbackToDestructiveMigration()`: ao mudar o esquema, basta subir a `version` e o banco é recriado, sem cada integrante precisar desinstalar o app. Hoje a `version` é **2**.
+- **Índice único em (`medicamento_id`, `data_hora_programada`)**: um medicamento não pode ter duas doses no mesmo instante. É isso que permite chamar a geração das doses do dia quantas vezes for preciso (ao abrir o app, por exemplo) sem duplicar nada nem perder o que já foi tomado.
+- **Enquanto o app está em desenvolvimento**, `AppDatabase` usa `fallbackToDestructiveMigration()`: ao mudar o esquema, basta subir a `version` e o banco é recriado, sem cada integrante precisar desinstalar o app. Hoje a `version` é **3**.
 
 ## Consultas disponíveis em `RegistroDoseDao`
 
@@ -53,10 +54,34 @@ Um medicamento tem N horários (ex: 08:00, 14:00, 20:00).
 | `proximaDosePendente(agora)` | card "Próximo lembrete" da Tela 1 e o alarme da Tela 7 |
 | `pendentesAtrasadas(limite)` | marcar como PERDIDO as doses cujo horário já passou |
 | `historicoPorMedicamento(id)` / `historicoCompleto()` | Tela 6 (Histórico) |
+| `inserirSeNaoExistir(dose)` | geração idempotente das doses do dia |
+| `marcarComoTomada(id, instante)` | Tela 5 - grava o status e a hora do registro |
+| `marcarPendentesAtrasadasComoPerdidas(limite)` | passa para PERDIDO o que ficou para trás |
+
+## Como as telas usam isso
+
+As telas não falam com os DAOs diretamente; usam um repositório, que valida, roda fora da main thread e devolve `LiveData` para a tela se atualizar sozinha.
+
+**`MedicamentoRepository`** — cadastro (Tela 2): `cadastrar(medicamento, callback)`.
+
+**`RegistroDoseRepository`** — registro de doses (Telas 1, 5, 6 e 7):
+
+| método | para que serve |
+|---|---|
+| `gerarDosesDoDia(dia, callback)` | cria as doses pendentes do dia a partir dos horários de cada medicamento em tratamento; pode ser chamado várias vezes |
+| `marcarComoTomada(registroId, instante, callback)` | Tela 5; uma dose perdida pode ser tomada depois, mas uma já tomada não tem a hora regravada |
+| `marcarAtrasadasComoPerdidas(limite, callback)` | evita mostrar como "pendente" uma dose de ontem |
+| `dosesDoDia(dia)` | agenda do dia (Tela 1) |
+| `tomadasNoDia(dia)` / `pendentesNoDia(dia)` / `perdidasNoDia(dia)` | contadores da Tela 1 |
+| `proximaDose(agora)` | card "Próximo lembrete" (Tela 1) e o horário a agendar no lembrete (Tela 7) |
+| `historico()` / `historicoDoMedicamento(id)` | Tela 6 |
+
+Os cálculos de agenda ficam em **`GeradorDeDoses`** (sem Android, testado na JVM): `inicioDoDia`, `inicioDoDiaSeguinte`, `instanteDaDose(dia, "HH:mm")`, `instantesDoDia` e `tratamentoAtivoEm`.
 
 ## Próximos passos sugeridos
 
 1. Rodar `Gradle Sync` no Android Studio para baixar as dependências do Room.
 2. Criar as telas de cadastro/detalhes chamando os DAOs através do `executor` (nunca na main thread).
 3. **Antes de entregar o app para uso real, trocar `fallbackToDestructiveMigration()` por `Migration`s** — senão os dados do usuário são apagados a cada atualização de esquema.
-4. Gerar os registros de dose a partir dos `horarios` de cada medicamento ativo, combinando o "HH:mm" com a data do dia para formar `data_hora_programada`.
+4. Chamar `gerarDosesDoDia(hoje)` e `marcarAtrasadasComoPerdidas(inicio de hoje)` quando o app abre, para a agenda do dia existir antes de a Tela 1 ser desenhada.
+5. Validar o formato "HH:mm" na tela de horários (Tela 3): hoje um horário gravado fora do formato é apenas ignorado na geração das doses.
