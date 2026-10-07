@@ -21,6 +21,11 @@
 
         </activity>
 
+        <!-- Tela 2 - Cadastro de Medicamento -->
+        <activity
+            android:name=".CadastroMedicamentoActivity"
+            android:exported="false" />
+
     </application>
 
 </manifest>
