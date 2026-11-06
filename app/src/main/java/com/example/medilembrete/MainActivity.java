@@ -81,6 +81,10 @@ public class MainActivity extends AppCompatActivity {
                     if (proximaDose == null) {
                         txtProximoLembrete.setText(
                                 "Nenhum lembrete programado. Configure os horários dos medicamentos.");
+                    } else {
+                        String horario = new SimpleDateFormat("HH:mm", Locale.getDefault())
+                                .format(proximaDose.getDataHoraProgramada());
+                        txtProximoLembrete.setText("Próxima dose programada para " + horario);
                     }
                 });
 
@@ -95,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
         listaMedicamentos.removeAllViews();
 
         int quantidade = medicamentos == null ? 0 : medicamentos.size();
-        txtTotalMedicamentos.setText(quantidade + (quantidade == 1 ? " total" : " total"));
+        txtTotalMedicamentos.setText(quantidade + " total");
         txtQuantidadeMedicamentos.setText(String.valueOf(quantidade));
 
         if (quantidade == 0) {
