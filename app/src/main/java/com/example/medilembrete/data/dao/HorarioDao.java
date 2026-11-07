@@ -14,10 +14,13 @@ public interface HorarioDao {
     @Insert long inserir(Horario horario);
     @Update void atualizar(Horario horario);
     @Delete void excluir(Horario horario);
+    @Query("DELETE FROM horarios WHERE medicamento_id = :medicamentoId")
+    void excluirTodosDoMedicamento(long medicamentoId);
 
     @Query("SELECT * FROM horarios WHERE medicamento_id = :medicamentoId ORDER BY horario ASC")
     LiveData<List<Horario>> listarPorMedicamento(long medicamentoId);
 
-    @Query("DELETE FROM horarios WHERE medicamento_id = :medicamentoId")
-    void excluirTodosDoMedicamento(long medicamentoId);
+    /** Mesma listagem, em versao sincrona, para usar em background. */
+    @Query("SELECT * FROM horarios WHERE medicamento_id = :medicamentoId ORDER BY horario ASC")
+    List<Horario> listarPorMedicamentoSync(long medicamentoId);
 }

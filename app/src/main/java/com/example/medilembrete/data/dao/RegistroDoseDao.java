@@ -5,6 +5,7 @@ import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
+import androidx.room.OnConflictStrategy;
 
 import com.example.medilembrete.data.entity.RegistroDose;
 import com.example.medilembrete.data.entity.StatusDose;
@@ -16,6 +17,8 @@ public interface RegistroDoseDao {
 
     @Insert
     long inserir(RegistroDose registro);
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    long inserirSeNaoExistir(RegistroDose registro);
 
     @Update
     void atualizar(RegistroDose registro);
@@ -47,6 +50,17 @@ public interface RegistroDoseDao {
             + "WHERE status = 'PENDENTE' AND data_hora_programada >= :agora "
             + "ORDER BY data_hora_programada ASC LIMIT 1")
     LiveData<RegistroDose> proximaDosePendente(long agora);
+
+    @Query("SELECT * FROM registros_dose WHERE id = :id")
+    RegistroDose buscarPorIdSync(long id);
+
+    @Query("UPDATE registros_dose SET status = 'TOMADO', data_hora_registro = :dataHoraRegistro "
+            + "WHERE id = :id AND status != 'TOMADO'")
+    int marcarComoTomada(long id, long dataHoraRegistro);
+
+    @Query("UPDATE registros_dose SET status = 'PERDIDO' "
+            + "WHERE status = 'PENDENTE' AND data_hora_programada < :limite")
+    int marcarPendentesAtrasadasComoPerdidas(long limite);
 
     /** Doses pendentes cujo horário já passou - usado para marcar as perdidas. */
     @Query("SELECT * FROM registros_dose "

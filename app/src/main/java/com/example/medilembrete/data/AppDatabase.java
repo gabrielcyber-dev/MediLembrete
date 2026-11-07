@@ -33,6 +33,11 @@ public abstract class AppDatabase extends RoomDatabase {
             db.execSQL("ALTER TABLE medicamentos ADD COLUMN horario_inicial TEXT NOT NULL DEFAULT '08:00'");
             db.execSQL("ALTER TABLE medicamentos ADD COLUMN intervalo_horas INTEGER NOT NULL DEFAULT 24");
             db.execSQL("ALTER TABLE medicamentos ADD COLUMN duracao_dias INTEGER");
+            db.execSQL(
+                    "CREATE UNIQUE INDEX IF NOT EXISTS "
+                            + "index_registros_dose_medicamento_id_data_hora_programada "
+                            + "ON registros_dose (medicamento_id, data_hora_programada)"
+            );
         }
     };
 
