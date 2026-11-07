@@ -19,11 +19,11 @@
             android:text="Cor de identificação" android:textColor="#35416A" android:textStyle="bold" android:textSize="15sp"/>
         <RadioGroup android:id="@+id/rgCor" android:layout_width="match_parent" android:layout_height="wrap_content"
             android:orientation="horizontal" android:gravity="center_vertical" android:paddingTop="8dp" android:paddingBottom="18dp">
-            <RadioButton android:id="@+id/corLaranja" android:layout_width="0dp" android:layout_height="48dp" android:layout_weight="1" android:buttonTint="#FF3E00" android:checked="true" android:text=" " />
-            <RadioButton android:id="@+id/corRoxo" android:layout_width="0dp" android:layout_height="48dp" android:layout_weight="1" android:buttonTint="#7902E8" android:text=" " />
-            <RadioButton android:id="@+id/corCiano" android:layout_width="0dp" android:layout_height="48dp" android:layout_weight="1" android:buttonTint="#10F0FF" android:text=" " />
-            <RadioButton android:id="@+id/corVerde" android:layout_width="0dp" android:layout_height="48dp" android:layout_weight="1" android:buttonTint="#8EEB10" android:text=" " />
-            <RadioButton android:id="@+id/corLaranjaClaro" android:layout_width="0dp" android:layout_height="48dp" android:layout_weight="1" android:buttonTint="#FF980F" android:text=" " />
+            <RadioButton android:id="@+id/corLaranja" android:layout_width="0dp" android:layout_height="48dp" android:layout_weight="1" android:button="@null" android:gravity="center" android:background="@drawable/dot_orange" android:text="" android:contentDescription="Selecionar cor #FF3E00" android:checked="true"/>
+            <RadioButton android:id="@+id/corRoxo" android:layout_width="0dp" android:layout_height="48dp" android:layout_weight="1" android:button="@null" android:gravity="center" android:background="@drawable/dot_purple" android:text="" android:contentDescription="Selecionar cor #7902E8"/>
+            <RadioButton android:id="@+id/corCiano" android:layout_width="0dp" android:layout_height="48dp" android:layout_weight="1" android:button="@null" android:gravity="center" android:background="@drawable/dot_cyan" android:text="" android:contentDescription="Selecionar cor #10F0FF"/>
+            <RadioButton android:id="@+id/corVerde" android:layout_width="0dp" android:layout_height="48dp" android:layout_weight="1" android:button="@null" android:gravity="center" android:background="@drawable/dot_lime" android:text="" android:contentDescription="Selecionar cor #8EEB10"/>
+            <RadioButton android:id="@+id/corLaranjaClaro" android:layout_width="0dp" android:layout_height="48dp" android:layout_weight="1" android:button="@null" android:gravity="center" android:background="@drawable/dot_amber" android:text="" android:contentDescription="Selecionar cor #FF980F"/>
         </RadioGroup>
 
         <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Nome do medicamento *" android:textColor="#586482" android:textSize="12sp"/>
@@ -54,7 +54,10 @@
             <RadioButton android:id="@+id/freq12" android:layout_width="match_parent" android:layout_height="48dp" android:layout_marginBottom="6dp" android:paddingStart="12dp" android:background="@drawable/bg_choice_card" android:buttonTint="#1A4FBF" android:text="A cada 12 horas"/>
             <RadioButton android:id="@+id/freq24" android:layout_width="match_parent" android:layout_height="48dp" android:layout_marginBottom="6dp" android:paddingStart="12dp" android:background="@drawable/bg_choice_card" android:buttonTint="#1A4FBF" android:checked="true" android:text="1 vez ao dia"/>
         </RadioGroup>
-        <TextView android:id="@+id/tvPreviaHorarios" android:layout_width="match_parent" android:layout_height="wrap_content" android:padding="12dp" android:layout_marginTop="5dp" android:layout_marginBottom="16dp" android:background="@drawable/card_background" android:textColor="#35416A" android:textSize="12sp"/>
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="12dp" android:layout_marginTop="5dp" android:layout_marginBottom="16dp" android:background="@drawable/card_background">
+ <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Horários calculados" android:textColor="#35416A" android:textSize="13sp" android:textStyle="bold"/>
+ <LinearLayout android:id="@+id/tvPreviaHorarios" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center" android:layout_marginTop="10dp"/>
+</LinearLayout>
 
         <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Duração do tratamento" android:textColor="#35416A" android:textStyle="bold" android:textSize="15sp"/>
         <EditText android:id="@+id/etDuracaoDias" android:layout_width="match_parent" android:layout_height="50dp" android:layout_marginTop="7dp" android:layout_marginBottom="5dp" android:background="@drawable/bg_edittext" android:paddingHorizontal="13dp" android:hint="Quantidade de dias" android:inputType="number" android:singleLine="true" android:textColor="#26345D"/>

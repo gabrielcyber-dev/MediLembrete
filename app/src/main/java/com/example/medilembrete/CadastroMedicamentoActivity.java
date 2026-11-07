@@ -7,6 +7,8 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -23,7 +25,8 @@ import java.util.concurrent.TimeUnit;
 
 public class CadastroMedicamentoActivity extends AppCompatActivity {
     private EditText etNome, etDosagem, etQuantidade, etDuracaoDias, etObservacoes;
-    private TextView tvHorarioInicial, tvPreviaHorarios, tvUnidadeQuantidade;
+    private TextView tvHorarioInicial, tvUnidadeQuantidade;
+    private LinearLayout tvPreviaHorarios;
     private RadioGroup rgForma, rgFrequencia, rgCor;
     private CheckBox cbContinuo;
     private Button btnSalvar;
@@ -107,7 +110,34 @@ public class CadastroMedicamentoActivity extends AppCompatActivity {
         return lista;
     }
     private void atualizarPrevia() {
-        if(tvPreviaHorarios!=null) tvPreviaHorarios.setText("Horários: "+android.text.TextUtils.join("  •  ",calcularHorarios()));
+        if (tvPreviaHorarios == null) return;
+        tvPreviaHorarios.removeAllViews();
+        List<String> horarios = calcularHorarios();
+        for (String horario : horarios) {
+            LinearLayout card = new LinearLayout(this);
+            card.setOrientation(LinearLayout.VERTICAL);
+            card.setGravity(android.view.Gravity.CENTER);
+            card.setPadding(dp(8), dp(10), dp(8), dp(10));
+            GradientDrawable fundo = new GradientDrawable();
+            fundo.setColor(Color.WHITE);
+            fundo.setCornerRadius(dp(12));
+            fundo.setStroke(dp(1), Color.rgb(219, 229, 246));
+            card.setBackground(fundo);
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(0, dp(58), 1f);
+            params.setMargins(dp(3), 0, dp(3), 0);
+            tvPreviaHorarios.addView(card, params);
+
+            TextView hora = new TextView(this);
+            hora.setText(horario);
+            hora.setTextColor(Color.rgb(26, 79, 191));
+            hora.setTextSize(15);
+            hora.setTypeface(null, 1);
+            card.addView(hora);
+        }
+    }
+
+    private int dp(int valor) {
+        return (int) (valor * getResources().getDisplayMetrics().density + 0.5f);
     }
 
     private void salvar() {

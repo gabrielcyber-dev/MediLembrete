@@ -135,7 +135,10 @@ public class MainActivity extends AppCompatActivity {
         cartao.setLayoutParams(parametros);
 
         TextView icone = new TextView(this);
-        icone.setText("+");
+        String forma = medicamento.getForma() == null ? "" : medicamento.getForma();
+        String simbolo = forma.equals("Comprimido") || forma.equals("Cápsula") ? "💊"
+                : (forma.equals("Líquido") ? "🧪" : "🧴");
+        icone.setText(simbolo);
         icone.setTextSize(25);
         icone.setTypeface(null, 1);
         icone.setTextColor(Color.parseColor(medicamento.getCorIdentificacao()));
