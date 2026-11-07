@@ -1,7 +1,7 @@
 package com.example.medilembrete;
-import android.app.Activity; import android.os.Bundle; import android.widget.TextView; import android.widget.Button; import android.content.DialogInterface; import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity; import android.os.Bundle; import android.widget.TextView; import android.widget.Button; import android.content.DialogInterface; import androidx.appcompat.app.AlertDialog;
 import com.example.medilembrete.data.AppDatabase; import com.example.medilembrete.data.entity.Medicamento; import com.example.medilembrete.data.entity.Horario; import java.text.SimpleDateFormat; import java.util.List; import java.util.Locale;
-public class DetalheMedicamentoActivity extends Activity {
+public class DetalheMedicamentoActivity extends AppCompatActivity {
  private AppDatabase db; private long id; private Medicamento medicamentoAtual;
  @Override protected void onCreate(Bundle b){super.onCreate(b);setContentView(R.layout.activity_detalhe_medicamento); id=getIntent().getLongExtra("medicamento_id",-1); db=AppDatabase.getInstance(this);
  findViewById(R.id.btnVoltarDetalhe).setOnClickListener(v->finish());
