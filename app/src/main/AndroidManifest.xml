@@ -1,29 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"> <!-- declara um app Android -->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <application
         android:theme="@style/AppTheme"
-        android:label="MediLembrete"> <!-- define o nome do app -->
+        android:label="MedLembrete">
 
+        <activity android:name=".MeusMedicamentosActivity" />
 
         <activity
-            android:name=".MeusMedicamentosActivity" />
-
-
-        <!-- cria uma activity chamada MainActivity -->
-        <activity  
             android:name=".MainActivity"
             android:exported="true">
-
-            <!-- abre a activity principal quando o usuário clicar no ícone -->
-            <intent-filter> 
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
 
-        <!-- Tela 2 - Cadastro de Medicamento -->
         <activity
             android:name=".CadastroMedicamentoActivity"
             android:exported="false" />
