@@ -1,203 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="#F3F5FF">
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-        android:paddingStart="18dp"
-        android:paddingTop="14dp"
-        android:paddingEnd="18dp"
-        android:paddingBottom="12dp"
-        android:background="#FFFFFF">
-
-        <TextView
-            android:layout_width="36dp"
-            android:layout_height="36dp"
-            android:gravity="center"
-            android:text="‹"
-            android:textColor="#26345D"
-            android:textSize="30sp"
-            android:background="@drawable/bg_back_button" />
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:paddingStart="12dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Novo medicamento"
-                android:textColor="#20294A"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Preencha os dados abaixo"
-                android:textColor="#8A94AE"
-                android:textSize="11sp" />
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:fillViewport="true" android:background="#F3F5FF"
+    android:clipToPadding="false">
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="vertical" android:padding="18dp">
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:gravity="center_vertical" android:orientation="horizontal" android:paddingBottom="18dp">
+            <TextView android:id="@+id/btnVoltar" android:layout_width="40dp" android:layout_height="40dp"
+                android:gravity="center" android:text="‹" android:textSize="30sp" android:textColor="#26345D"
+                android:background="@drawable/bg_back_button"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:layout_marginStart="12dp" android:text="Novo medicamento" android:textColor="#20294A"
+                android:textSize="21sp" android:textStyle="bold"/>
         </LinearLayout>
+
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="Cor de identificação" android:textColor="#35416A" android:textStyle="bold" android:textSize="15sp"/>
+        <RadioGroup android:id="@+id/rgCor" android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="horizontal" android:gravity="center_vertical" android:paddingTop="8dp" android:paddingBottom="18dp">
+            <RadioButton android:id="@+id/corLaranja" android:layout_width="0dp" android:layout_height="48dp" android:layout_weight="1" android:buttonTint="#FF3E00" android:checked="true" android:text=" " />
+            <RadioButton android:id="@+id/corRoxo" android:layout_width="0dp" android:layout_height="48dp" android:layout_weight="1" android:buttonTint="#7902E8" android:text=" " />
+            <RadioButton android:id="@+id/corCiano" android:layout_width="0dp" android:layout_height="48dp" android:layout_weight="1" android:buttonTint="#10F0FF" android:text=" " />
+            <RadioButton android:id="@+id/corVerde" android:layout_width="0dp" android:layout_height="48dp" android:layout_weight="1" android:buttonTint="#8EEB10" android:text=" " />
+            <RadioButton android:id="@+id/corLaranjaClaro" android:layout_width="0dp" android:layout_height="48dp" android:layout_weight="1" android:buttonTint="#FF980F" android:text=" " />
+        </RadioGroup>
+
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Nome do medicamento *" android:textColor="#586482" android:textSize="12sp"/>
+        <EditText android:id="@+id/etNome" android:layout_width="match_parent" android:layout_height="50dp" android:layout_marginTop="5dp" android:layout_marginBottom="14dp" android:background="@drawable/bg_edittext" android:paddingHorizontal="13dp" android:hint="Ex.: Losartana" android:singleLine="true" android:textColor="#26345D"/>
+
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Forma do medicamento *" android:textColor="#586482" android:textSize="12sp"/>
+        <RadioGroup android:id="@+id/rgForma" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:paddingTop="5dp" android:paddingBottom="12dp">
+            <RadioButton android:id="@+id/formaComprimido" android:layout_width="match_parent" android:layout_height="44dp" android:checked="true" android:text="Comprimido"/>
+            <RadioButton android:id="@+id/formaCapsula" android:layout_width="match_parent" android:layout_height="44dp" android:text="Cápsula"/>
+            <RadioButton android:id="@+id/formaLiquido" android:layout_width="match_parent" android:layout_height="44dp" android:text="Líquido"/>
+            <RadioButton android:id="@+id/formaLocao" android:layout_width="match_parent" android:layout_height="44dp" android:text="Loção"/>
+            <RadioButton android:id="@+id/formaSpray" android:layout_width="match_parent" android:layout_height="44dp" android:text="Spray"/>
+        </RadioGroup>
+
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Dosagem *" android:textColor="#586482" android:textSize="12sp"/>
+        <EditText android:id="@+id/etDosagem" android:layout_width="match_parent" android:layout_height="50dp" android:layout_marginTop="5dp" android:layout_marginBottom="12dp" android:background="@drawable/bg_edittext" android:paddingHorizontal="13dp" android:hint="Ex.: 250 mg, 10 ml, 5%" android:singleLine="true" android:textColor="#26345D"/>
+
+        <TextView android:id="@+id/tvUnidadeQuantidade" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Quantidade por dose (comprimidos) *" android:textColor="#586482" android:textSize="12sp"/>
+        <EditText android:id="@+id/etQuantidade" android:layout_width="match_parent" android:layout_height="50dp" android:layout_marginTop="5dp" android:layout_marginBottom="16dp" android:background="@drawable/bg_edittext" android:paddingHorizontal="13dp" android:hint="Ex.: 1" android:inputType="number" android:singleLine="true" android:textColor="#26345D"/>
+
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Horário inicial" android:textColor="#35416A" android:textStyle="bold" android:textSize="15sp"/>
+        <TextView android:id="@+id/tvHorarioInicial" android:layout_width="match_parent" android:layout_height="50dp" android:layout_marginTop="7dp" android:layout_marginBottom="14dp" android:gravity="center_vertical" android:paddingHorizontal="14dp" android:background="@drawable/bg_edittext" android:text="08:00" android:textColor="#26345D" android:textSize="16sp"/>
+
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Frequência" android:textColor="#35416A" android:textStyle="bold" android:textSize="15sp"/>
+        <RadioGroup android:id="@+id/rgFrequencia" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:paddingTop="5dp">
+            <RadioButton android:id="@+id/freq6" android:layout_width="match_parent" android:layout_height="44dp" android:text="A cada 6 horas"/>
+            <RadioButton android:id="@+id/freq8" android:layout_width="match_parent" android:layout_height="44dp" android:text="A cada 8 horas"/>
+            <RadioButton android:id="@+id/freq12" android:layout_width="match_parent" android:layout_height="44dp" android:text="A cada 12 horas"/>
+            <RadioButton android:id="@+id/freq24" android:layout_width="match_parent" android:layout_height="44dp" android:checked="true" android:text="1 vez ao dia"/>
+        </RadioGroup>
+        <TextView android:id="@+id/tvPreviaHorarios" android:layout_width="match_parent" android:layout_height="wrap_content" android:padding="12dp" android:layout_marginTop="5dp" android:layout_marginBottom="16dp" android:background="@drawable/card_background" android:textColor="#35416A" android:textSize="12sp"/>
+
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Duração do tratamento" android:textColor="#35416A" android:textStyle="bold" android:textSize="15sp"/>
+        <EditText android:id="@+id/etDuracaoDias" android:layout_width="match_parent" android:layout_height="50dp" android:layout_marginTop="7dp" android:layout_marginBottom="5dp" android:background="@drawable/bg_edittext" android:paddingHorizontal="13dp" android:hint="Quantidade de dias" android:inputType="number" android:singleLine="true" android:textColor="#26345D"/>
+        <CheckBox android:id="@+id/cbContinuo" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Duração contínua" android:textColor="#35416A" android:layout_marginBottom="14dp"/>
+
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Observações" android:textColor="#35416A" android:textStyle="bold" android:textSize="15sp"/>
+        <EditText android:id="@+id/etObservacoes" android:layout_width="match_parent" android:layout_height="90dp" android:layout_marginTop="7dp" android:layout_marginBottom="18dp" android:background="@drawable/bg_edittext" android:gravity="top|start" android:padding="13dp" android:hint="Ex.: Tomar com água, em jejum..." android:inputType="textCapSentences|textMultiLine" android:textColor="#26345D"/>
+
+        <Button android:id="@+id/btnSalvar" android:layout_width="match_parent" android:layout_height="54dp" android:layout_marginBottom="24dp" android:background="@drawable/bg_botao_arredondado" android:text="Salvar medicamento" android:textAllCaps="false" android:textColor="#FFFFFF" android:textSize="15sp" android:textStyle="bold"/>
     </LinearLayout>
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:fillViewport="true"
-        android:clipToPadding="false">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingStart="18dp"
-            android:paddingTop="18dp"
-            android:paddingEnd="18dp"
-            android:paddingBottom="22dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Identificação"
-                android:textColor="#35416A"
-                android:textSize="13sp"
-                android:textStyle="bold"
-                android:layout_marginBottom="8dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Nome do medicamento *"
-                android:textColor="#586482"
-                android:textSize="11sp"
-                android:layout_marginBottom="5dp" />
-
-            <EditText
-                android:id="@+id/etNome"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:background="@drawable/bg_edittext"
-                android:paddingStart="13dp"
-                android:paddingEnd="13dp"
-                android:hint="Ex: Losartana"
-                android:textColor="#26345D"
-                android:textColorHint="#A3ABC0"
-                android:textSize="13sp"
-                android:singleLine="true"
-                android:layout_marginBottom="12dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Dosagem *"
-                android:textColor="#586482"
-                android:textSize="11sp"
-                android:layout_marginBottom="5dp" />
-
-            <EditText
-                android:id="@+id/etDosagem"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:background="@drawable/bg_edittext"
-                android:paddingStart="13dp"
-                android:paddingEnd="13dp"
-                android:hint="Ex: 50mg — 1 comprimido"
-                android:textColor="#26345D"
-                android:textColorHint="#A3ABC0"
-                android:textSize="13sp"
-                android:singleLine="true"
-                android:layout_marginBottom="12dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Quantidade por dose *"
-                android:textColor="#586482"
-                android:textSize="11sp"
-                android:layout_marginBottom="5dp" />
-
-            <EditText
-                android:id="@+id/etQuantidade"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:background="@drawable/bg_edittext"
-                android:paddingStart="13dp"
-                android:paddingEnd="13dp"
-                android:hint="Ex: 1"
-                android:inputType="number"
-                android:textColor="#26345D"
-                android:textColorHint="#A3ABC0"
-                android:textSize="13sp"
-                android:singleLine="true"
-                android:layout_marginBottom="16dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Duração do tratamento"
-                android:textColor="#35416A"
-                android:textSize="13sp"
-                android:textStyle="bold"
-                android:layout_marginBottom="8dp" />
-
-            <EditText
-                android:id="@+id/etDuracaoDias"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:background="@drawable/bg_edittext"
-                android:paddingStart="13dp"
-                android:paddingEnd="13dp"
-                android:hint="Ex: 7 dias, 30 dias ou em branco para contínuo"
-                android:inputType="number"
-                android:textColor="#26345D"
-                android:textColorHint="#A3ABC0"
-                android:textSize="12sp"
-                android:singleLine="true"
-                android:layout_marginBottom="16dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Observações"
-                android:textColor="#35416A"
-                android:textSize="13sp"
-                android:textStyle="bold"
-                android:layout_marginBottom="8dp" />
-
-            <EditText
-                android:id="@+id/etObservacoes"
-                android:layout_width="match_parent"
-                android:layout_height="88dp"
-                android:gravity="top|start"
-                android:background="@drawable/bg_edittext"
-                android:padding="13dp"
-                android:hint="Ex: Tomar com água, em jejum..."
-                android:textColor="#26345D"
-                android:textColorHint="#A3ABC0"
-                android:textSize="12sp"
-                android:inputType="textCapSentences|textMultiLine"
-                android:layout_marginBottom="20dp" />
-
-            <Button
-                android:id="@+id/btnSalvar"
-                android:layout_width="match_parent"
-                android:layout_height="52dp"
-                android:background="@drawable/bg_botao_arredondado"
-                android:text="✓  Salvar medicamento"
-                android:textAllCaps="false"
-                android:textColor="#FFFFFF"
-                android:textSize="15sp"
-                android:textStyle="bold" />
-        </LinearLayout>
-    </ScrollView>
-</LinearLayout>
+</ScrollView>
