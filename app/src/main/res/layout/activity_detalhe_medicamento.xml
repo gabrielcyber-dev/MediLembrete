@@ -3,7 +3,7 @@
  <ScrollView android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1">
   <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical">
    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="24dp" android:background="#1A4FBF">
-    <Button android:id="@+id/btnVoltarDetalhe" android:layout_width="44dp" android:layout_height="44dp" android:text="‹" android:textSize="25sp" android:textColor="#FFFFFF" android:backgroundTint="#553FFFFFFF"/>
+    <Button android:id="@+id/btnVoltarDetalhe" android:layout_width="44dp" android:layout_height="44dp" android:text="‹" android:textSize="25sp" android:textColor="#FFFFFF" android:backgroundTint="#553F6FBF"/>
     <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Detalhes do medicamento" android:textColor="#BFDBFE" android:textSize="13sp" android:layout_marginTop="16dp"/>
     <TextView android:id="@+id/txtNomeDetalhe" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Medicamento" android:textColor="#FFFFFF" android:textSize="25sp" android:textStyle="bold" android:layout_marginTop="4dp"/>
     <TextView android:id="@+id/txtDosagemDetalhe" android:layout_width="match_parent" android:layout_height="wrap_content" android:textColor="#DBEAFE" android:textSize="16sp" android:layout_marginTop="4dp"/>

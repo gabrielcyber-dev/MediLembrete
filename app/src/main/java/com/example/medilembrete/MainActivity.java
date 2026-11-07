@@ -157,6 +157,11 @@ public class MainActivity extends AppCompatActivity {
         periodo.setTextSize(14);
         cartao.addView(periodo);
 
+        cartao.setOnClickListener(v -> {
+            Intent intent = new Intent(this, DetalheMedicamentoActivity.class);
+            intent.putExtra("medicamento_id", medicamento.getId());
+            startActivity(intent);
+        });
         return cartao;
     }
 
