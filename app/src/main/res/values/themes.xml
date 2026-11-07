@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <resources>
-
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:fontFamily">sans-serif-rounded</item>
+        <item name="android:colorAccent">#1A4FBF</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:statusBarColor">#F0F4FF</item>
+        <item name="android:navigationBarColor">#FFFFFF</item>
     </style>
-
 </resources>
