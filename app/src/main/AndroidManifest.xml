@@ -1,25 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <application
-        android:theme="@style/AppTheme"
-        android:label="MedLembrete">
-
-        <activity android:name=".MeusMedicamentosActivity" />
-
-        <activity
-            android:name=".MainActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
-        <activity
-            android:name=".CadastroMedicamentoActivity"
-            android:exported="false" />
-
-    </application>
-
+ <application android:theme="@style/AppTheme" android:label="MedLembrete">
+  <activity android:name=".DetalheMedicamentoActivity" android:exported="false"/>
+  <activity android:name=".HistoricoActivity" android:exported="false"/>
+  <activity android:name=".MeusMedicamentosActivity" android:exported="false"/>
+  <activity android:name=".MainActivity" android:exported="true"><intent-filter><action android:name="android.intent.action.MAIN"/><category android:name="android.intent.category.LAUNCHER"/></intent-filter></activity>
+  <activity android:name=".CadastroMedicamentoActivity" android:exported="false"/>
+ </application>
 </manifest>

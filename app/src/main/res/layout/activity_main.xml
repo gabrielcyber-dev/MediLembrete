@@ -21,7 +21,7 @@
                     android:orientation="horizontal" android:background="@drawable/bg_next_reminder">
                     <TextView android:layout_width="42dp" android:layout_height="42dp" android:gravity="center"
                         android:text="◷" android:textColor="#FFFFFF" android:textSize="25sp"
-                        android:background="#334FFFFFF"/>
+                        android:background="#331A4FBF"/>
                     <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
                         android:layout_weight="1" android:orientation="vertical" android:layout_marginStart="12dp">
                         <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"

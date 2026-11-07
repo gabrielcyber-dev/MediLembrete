@@ -1,14 +1,8 @@
 package com.example.medilembrete;
-
-import android.app.Activity;
-import android.os.Bundle;
-
+import android.app.Activity; import android.content.Intent; import android.graphics.Color; import android.graphics.drawable.GradientDrawable; import android.os.Bundle; import android.view.Gravity; import android.widget.LinearLayout; import android.widget.TextView;
+import com.example.medilembrete.data.AppDatabase; import com.example.medilembrete.data.entity.Medicamento; import java.util.List;
 public class MeusMedicamentosActivity extends Activity {
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        setContentView(R.layout.activity_meus_medicamentos);
-    }
+ private LinearLayout lista;
+ @Override protected void onCreate(Bundle b){super.onCreate(b);setContentView(R.layout.activity_meus_medicamentos);lista=findViewById(R.id.listaCompletaMedicamentos);findViewById(R.id.btnVoltarLista).setOnClickListener(v->finish());AppDatabase.getInstance(this).medicamentoDao().listarTodos().observe(this,this::mostrar);}
+ private void mostrar(List<Medicamento> ms){lista.removeAllViews();((TextView)findViewById(R.id.txtQuantidadeLista)).setText((ms==null?0:ms.size())+" cadastrados");if(ms==null||ms.isEmpty()){TextView t=new TextView(this);t.setText("Nenhum medicamento cadastrado.");t.setTextColor(Color.GRAY);t.setPadding(16,32,16,32);lista.addView(t);return;}for(Medicamento m:ms){TextView t=new TextView(this);t.setText(m.getNome()+"\n"+m.getDosagem()+"  ·  "+m.getHorarioInicial());t.setTextColor(Color.rgb(15,23,42));t.setTextSize(16);t.setPadding(18,18,18,18);GradientDrawable bg=new GradientDrawable();bg.setColor(Color.WHITE);bg.setCornerRadius(24);bg.setStroke(1,Color.rgb(226,232,240));t.setBackground(bg);LinearLayout.LayoutParams p=new LinearLayout.LayoutParams(-1,-2);p.bottomMargin=12;lista.addView(t,p);t.setOnClickListener(v->{Intent i=new Intent(this,DetalheMedicamentoActivity.class);i.putExtra("medicamento_id",m.getId());startActivity(i);});}}
 }
