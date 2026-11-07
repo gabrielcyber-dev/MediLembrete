@@ -10,6 +10,19 @@ public class MedicamentoRepository {
     private final AppDatabase db;
     public MedicamentoRepository(@NonNull AppDatabase db) { this.db = db; }
 
+    public void cadastrar(@NonNull Medicamento medicamento, Callback callback) {
+        java.util.List<String> horarios = new java.util.ArrayList<>();
+        String[] partes = medicamento.getHorarioInicial().split(":");
+        int inicio = Integer.parseInt(partes[0]) * 60 + Integer.parseInt(partes[1]);
+        int intervalo = medicamento.getIntervaloHoras() * 60;
+        int quantidade = 24 / medicamento.getIntervaloHoras();
+        for (int i = 0; i < quantidade; i++) {
+            int total = (inicio + i * intervalo) % 1440;
+            horarios.add(String.format(java.util.Locale.ROOT, "%02d:%02d", total / 60, total % 60));
+        }
+        cadastrar(medicamento, horarios, callback);
+    }
+
     public void cadastrar(@NonNull Medicamento medicamento, @NonNull List<String> horarios, Callback callback) {
         MedicamentoValidator.validar(medicamento.getNome(), medicamento.getQuantidadePorDose(),
                 medicamento.getDataInicio(), medicamento.getDataFim());

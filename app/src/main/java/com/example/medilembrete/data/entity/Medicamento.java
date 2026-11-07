@@ -30,6 +30,12 @@ public class Medicamento {
         this.horarioInicial = horarioInicial; this.intervaloHoras = intervaloHoras;
         this.duracaoDias = duracaoDias;
     }
+    // Construtor legado mantido para compatibilidade com testes e chamadas existentes.
+    public Medicamento(@NonNull String nome, String dosagem, int quantidadePorDose,
+            long dataInicio, Long dataFim, String observacoes) {
+        this(nome, dosagem, quantidadePorDose, dataInicio, dataFim, observacoes,
+                "Comprimido", "#FF3E00", "08:00", 24, null);
+    }
     public long getId(){return id;} public void setId(long v){id=v;}
     @NonNull public String getNome(){return nome;} public void setNome(@NonNull String v){nome=v;}
     public String getDosagem(){return dosagem;} public void setDosagem(String v){dosagem=v;}
