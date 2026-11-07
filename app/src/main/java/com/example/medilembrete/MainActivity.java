@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -134,18 +135,16 @@ public class MainActivity extends AppCompatActivity {
         parametros.bottomMargin = dp(10);
         cartao.setLayoutParams(parametros);
 
-        TextView icone = new TextView(this);
-        String forma = medicamento.getForma() == null ? "" : medicamento.getForma();
-        String simbolo = forma.equals("Comprimido") || forma.equals("Cápsula") ? "💊"
-                : (forma.equals("Líquido") ? "🧪" : "🧴");
-        icone.setText(simbolo);
-        icone.setTextSize(25);
-        icone.setTypeface(null, 1);
-        icone.setTextColor(Color.parseColor(medicamento.getCorIdentificacao()));
-        icone.setGravity(android.view.Gravity.CENTER);
+        ImageView icone = new ImageView(this);
+        icone.setImageResource(R.drawable.ic_medication);
+        int corIcone;
+        try { corIcone = Color.parseColor(medicamento.getCorIdentificacao()); } catch (Exception e) { corIcone = Color.rgb(255, 62, 0); }
+        icone.setColorFilter(corIcone);
+        icone.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
+        icone.setPadding(dp(13), dp(13), dp(13), dp(13));
         android.graphics.drawable.GradientDrawable fundoIcone = new android.graphics.drawable.GradientDrawable();
-        fundoIcone.setColor(Color.parseColor(medicamento.getCorIdentificacao()));
-        fundoIcone.setAlpha(30);
+        fundoIcone.setColor(corIcone);
+        fundoIcone.setAlpha(28);
         fundoIcone.setCornerRadius(dp(13));
         icone.setBackground(fundoIcone);
         cartao.addView(icone, new LinearLayout.LayoutParams(dp(52), dp(52)));
