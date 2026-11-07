@@ -3,6 +3,7 @@ package com.example.medilembrete.data.entity;
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "medicamentos")
@@ -30,7 +31,8 @@ public class Medicamento {
         this.horarioInicial = horarioInicial; this.intervaloHoras = intervaloHoras;
         this.duracaoDias = duracaoDias;
     }
-    // Construtor legado mantido para compatibilidade com testes e chamadas existentes.
+    // Construtor legado para chamadas existentes; o Room deve ignorá-lo.
+    @Ignore
     public Medicamento(@NonNull String nome, String dosagem, int quantidadePorDose,
             long dataInicio, Long dataFim, String observacoes) {
         this(nome, dosagem, quantidadePorDose, dataInicio, dataFim, observacoes,
