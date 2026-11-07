@@ -1,298 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="#F3F5FF">
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:fillViewport="true"
-        android:clipToPadding="false">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingBottom="20dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingStart="20dp"
-                android:paddingTop="24dp"
-                android:paddingEnd="20dp"
-                android:paddingBottom="22dp"
-                android:background="@drawable/bg_home_header">
-
-                <TextView
-                    android:id="@+id/txtSaudacao"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Bom dia"
-                    android:textColor="#DCE3FF"
-                    android:textSize="14sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
-                    android:text="MediLembrete"
-                    android:textColor="#FFFFFF"
-                    android:textSize="26sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txtDataAtual"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="3dp"
-                    android:layout_marginBottom="18dp"
-                    android:text="Quarta-feira, 18 de outubro"
-                    android:textColor="#DCE3FF"
-                    android:textSize="12sp" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="16dp"
-                    android:background="@drawable/bg_next_reminder">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="◷  PRÓXIMO LEMBRETE"
-                        android:textColor="#E3E8FF"
-                        android:textSize="11sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/txtProximoLembrete"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="9dp"
-                        android:text="Nenhum lembrete programado."
-                        android:textColor="#FFFFFF"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:orientation="vertical" android:background="#F0F4FF">
+    <ScrollView android:layout_width="match_parent" android:layout_height="0dp"
+        android:layout_weight="1" android:fillViewport="true" android:clipToPadding="false">
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="vertical" android:paddingStart="24dp" android:paddingEnd="24dp"
+                android:paddingTop="22dp" android:paddingBottom="22dp" android:background="#1A4FBF">
+                <TextView android:id="@+id/txtSaudacao" android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:text="Bom dia 👋" android:textColor="#93C5FD" android:textSize="14sp"/>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="MedLembrete" android:textColor="#FFFFFF" android:textSize="26sp" android:textStyle="bold"/>
+                <TextView android:id="@+id/txtDataAtual" android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:layout_marginTop="4dp"
+                    android:textColor="#BFDBFE" android:textSize="12sp"/>
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:layout_marginTop="18dp" android:padding="14dp" android:gravity="center_vertical"
+                    android:orientation="horizontal" android:background="@drawable/bg_next_reminder">
+                    <TextView android:layout_width="42dp" android:layout_height="42dp" android:gravity="center"
+                        android:text="◷" android:textColor="#FFFFFF" android:textSize="25sp"
+                        android:background="#334FFFFFF"/>
+                    <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                        android:layout_weight="1" android:orientation="vertical" android:layout_marginStart="12dp">
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="Próximo lembrete" android:textColor="#BFDBFE" android:textSize="12sp"/>
+                        <TextView android:id="@+id/txtProximoLembrete" android:layout_width="match_parent"
+                            android:layout_height="wrap_content" android:text="Nenhum lembrete programado."
+                            android:textColor="#FFFFFF" android:textSize="15sp" android:textStyle="bold" android:layout_marginTop="3dp"/>
+                    </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="20dp">
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="88dp"
-                    android:layout_weight="1"
-                    android:layout_marginEnd="5dp"
-                    android:gravity="center"
-                    android:orientation="vertical"
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="horizontal" android:paddingStart="16dp" android:paddingEnd="16dp"
+                android:paddingTop="16dp" android:paddingBottom="16dp">
+                <LinearLayout android:layout_width="0dp" android:layout_height="88dp" android:layout_weight="1"
+                    android:layout_marginEnd="5dp" android:gravity="center" android:orientation="vertical"
                     android:background="@drawable/bg_stat_blue">
-
-                    <TextView
-                        android:id="@+id/txtQuantidadeMedicamentos"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="0"
-                        android:textColor="#3949C8"
-                        android:textSize="25sp"
-                        android:textStyle="bold" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Medicamentos"
-                        android:textColor="#64708A"
-                        android:textSize="10sp" />
+                    <TextView android:id="@+id/txtQuantidadeMedicamentos" android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:text="0" android:textColor="#1A4FBF" android:textSize="25sp" android:textStyle="bold"/>
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="Medicamentos" android:textColor="#64748B" android:textSize="10sp"/>
                 </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="88dp"
-                    android:layout_weight="1"
-                    android:layout_marginHorizontal="5dp"
-                    android:gravity="center"
-                    android:orientation="vertical"
+                <LinearLayout android:layout_width="0dp" android:layout_height="88dp" android:layout_weight="1"
+                    android:layout_marginHorizontal="5dp" android:gravity="center" android:orientation="vertical"
                     android:background="@drawable/bg_stat_green">
-
-                    <TextView
-                        android:id="@+id/txtTomadosHoje"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="0"
-                        android:textColor="#16A878"
-                        android:textSize="25sp"
-                        android:textStyle="bold" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Tomados hoje"
-                        android:textColor="#64708A"
-                        android:textSize="10sp" />
+                    <TextView android:id="@+id/txtTomadosHoje" android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:text="0" android:textColor="#0F9D7A" android:textSize="25sp" android:textStyle="bold"/>
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="Tomados hoje" android:textColor="#64748B" android:textSize="10sp"/>
                 </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="88dp"
-                    android:layout_weight="1"
-                    android:layout_marginStart="5dp"
-                    android:gravity="center"
-                    android:orientation="vertical"
+                <LinearLayout android:layout_width="0dp" android:layout_height="88dp" android:layout_weight="1"
+                    android:layout_marginStart="5dp" android:gravity="center" android:orientation="vertical"
                     android:background="@drawable/bg_stat_orange">
-
-                    <TextView
-                        android:id="@+id/txtPendentesHoje"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="0"
-                        android:textColor="#E58A16"
-                        android:textSize="25sp"
-                        android:textStyle="bold" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Pendentes"
-                        android:textColor="#64708A"
-                        android:textSize="10sp" />
+                    <TextView android:id="@+id/txtPendentesHoje" android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:text="0" android:textColor="#D97706" android:textSize="25sp" android:textStyle="bold"/>
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="Pendentes" android:textColor="#64748B" android:textSize="10sp"/>
                 </LinearLayout>
             </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:paddingStart="20dp"
-                android:paddingEnd="20dp"
-                android:layout_marginBottom="12dp">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Meus medicamentos"
-                    android:textColor="#20294A"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txtTotalMedicamentos"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="0 total"
-                    android:textColor="#737FA5"
-                    android:textSize="12sp" />
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="horizontal" android:gravity="center_vertical"
+                android:paddingStart="24dp" android:paddingEnd="24dp" android:paddingBottom="12dp">
+                <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1"
+                    android:text="Meus medicamentos" android:textColor="#0F172A" android:textSize="18sp" android:textStyle="bold"/>
+                <TextView android:id="@+id/txtTotalMedicamentos" android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:text="0 total" android:textColor="#1A4FBF" android:textSize="12sp"/>
             </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/listaMedicamentos"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp" />
-
-            <Button
-                android:id="@+id/btnAdicionar"
-                android:layout_width="match_parent"
-                android:layout_height="52dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="4dp"
-                android:layout_marginEnd="16dp"
-                android:background="@drawable/bg_botao_arredondado"
-                android:text="+  Adicionar medicamento"
-                android:textAllCaps="false"
-                android:textColor="#FFFFFF"
-                android:textSize="15sp"
-                android:textStyle="bold" />
+            <LinearLayout android:id="@+id/listaMedicamentos" android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:orientation="vertical" android:paddingStart="16dp" android:paddingEnd="16dp"/>
+            <Button android:id="@+id/btnAdicionar" android:layout_width="match_parent"
+                android:layout_height="60dp" android:layout_marginStart="24dp" android:layout_marginEnd="24dp"
+                android:layout_marginTop="8dp" android:layout_marginBottom="20dp"
+                android:background="@drawable/bg_botao_arredondado" android:text="＋  Adicionar medicamento"
+                android:textAllCaps="false" android:textColor="#FFFFFF" android:textSize="16sp" android:textStyle="bold"/>
         </LinearLayout>
     </ScrollView>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="62dp"
-        android:background="#FFFFFF"
-        android:elevation="10dp"
-        android:gravity="center"
-        android:orientation="horizontal">
-
-        <LinearLayout
-            android:id="@+id/menuInicio"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:clickable="true"
-            android:focusable="true"
-            android:gravity="center"
-            android:orientation="vertical">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="⌂"
-                android:textColor="#3949C8"
-                android:textSize="21sp" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Início"
-                android:textColor="#3949C8"
-                android:textSize="10sp" />
+    <LinearLayout android:layout_width="match_parent" android:layout_height="64dp"
+        android:orientation="horizontal" android:gravity="center" android:background="#FFFFFF"
+        android:elevation="8dp">
+        <LinearLayout android:id="@+id/menuInicio" android:layout_width="0dp" android:layout_height="match_parent"
+            android:layout_weight="1" android:gravity="center" android:orientation="vertical" android:clickable="true" android:focusable="true">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="⌂" android:textSize="22sp" android:textColor="#1A4FBF"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Início" android:textSize="11sp" android:textStyle="bold" android:textColor="#1A4FBF"/>
         </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/menuMedicamentos"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:clickable="true"
-            android:focusable="true"
-            android:gravity="center"
-            android:orientation="vertical">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="▣"
-                android:textColor="#9AA4C0"
-                android:textSize="20sp" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Medicamentos"
-                android:textColor="#9AA4C0"
-                android:textSize="10sp" />
+        <LinearLayout android:id="@+id/menuMedicamentos" android:layout_width="0dp" android:layout_height="match_parent"
+            android:layout_weight="1" android:gravity="center" android:orientation="vertical" android:clickable="true" android:focusable="true">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="▣" android:textSize="21sp" android:textColor="#94A3B8"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Medicamentos" android:textSize="11sp" android:textColor="#94A3B8"/>
         </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/menuHistorico"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:clickable="true"
-            android:focusable="true"
-            android:gravity="center"
-            android:orientation="vertical">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="◷"
-                android:textColor="#9AA4C0"
-                android:textSize="20sp" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Histórico"
-                android:textColor="#9AA4C0"
-                android:textSize="10sp" />
+        <LinearLayout android:id="@+id/menuHistorico" android:layout_width="0dp" android:layout_height="match_parent"
+            android:layout_weight="1" android:gravity="center" android:orientation="vertical" android:clickable="true" android:focusable="true">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="◷" android:textSize="21sp" android:textColor="#94A3B8"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Histórico" android:textSize="11sp" android:textColor="#94A3B8"/>
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>
