@@ -88,6 +88,9 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
 
+        findViewById(R.id.menuMedicamentos).setOnClickListener(v -> startActivity(new Intent(this, MeusMedicamentosActivity.class)));
+        findViewById(R.id.menuHistorico).setOnClickListener(v -> startActivity(new Intent(this, HistoricoActivity.class)));
+
         Button btnAdicionar = findViewById(R.id.btnAdicionar);
         btnAdicionar.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, CadastroMedicamentoActivity.class);
