@@ -122,43 +122,64 @@ public class MainActivity extends AppCompatActivity {
 
     private View criarCartaoMedicamento(Medicamento medicamento) {
         LinearLayout cartao = new LinearLayout(this);
-        cartao.setOrientation(LinearLayout.VERTICAL);
-        cartao.setPadding(dp(16), dp(14), dp(16), dp(14));
-        cartao.setBackgroundResource(R.drawable.bg_card_medicamento);
-
-        LinearLayout.LayoutParams parametros = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT);
-        parametros.bottomMargin = dp(12);
+        cartao.setOrientation(LinearLayout.HORIZONTAL);
+        cartao.setGravity(android.view.Gravity.CENTER_VERTICAL);
+        cartao.setPadding(dp(14), dp(14), dp(12), dp(14));
+        android.graphics.drawable.GradientDrawable fundo = new android.graphics.drawable.GradientDrawable();
+        fundo.setColor(Color.WHITE);
+        fundo.setCornerRadius(dp(16));
+        fundo.setStroke(dp(1), Color.rgb(226, 232, 240));
+        cartao.setBackground(fundo);
+        LinearLayout.LayoutParams parametros = new LinearLayout.LayoutParams(-1, -2);
+        parametros.bottomMargin = dp(10);
         cartao.setLayoutParams(parametros);
+
+        TextView icone = new TextView(this);
+        icone.setText("+");
+        icone.setTextSize(25);
+        icone.setTypeface(null, 1);
+        icone.setTextColor(Color.parseColor(medicamento.getCorIdentificacao()));
+        icone.setGravity(android.view.Gravity.CENTER);
+        android.graphics.drawable.GradientDrawable fundoIcone = new android.graphics.drawable.GradientDrawable();
+        fundoIcone.setColor(Color.parseColor(medicamento.getCorIdentificacao()));
+        fundoIcone.setAlpha(30);
+        fundoIcone.setCornerRadius(dp(13));
+        icone.setBackground(fundoIcone);
+        cartao.addView(icone, new LinearLayout.LayoutParams(dp(52), dp(52)));
+
+        LinearLayout informacoes = new LinearLayout(this);
+        informacoes.setOrientation(LinearLayout.VERTICAL);
+        informacoes.setPadding(dp(12), 0, 0, 0);
+        cartao.addView(informacoes, new LinearLayout.LayoutParams(0, -2, 1));
 
         TextView nome = new TextView(this);
         nome.setText(medicamento.getNome());
-        nome.setTextColor(Color.rgb(30, 41, 59));
-        nome.setTextSize(18);
-        cartao.addView(nome);
+        nome.setTextColor(Color.rgb(15, 23, 42));
+        nome.setTextSize(16);
+        nome.setTypeface(null, 1);
+        informacoes.addView(nome);
 
-        String dosagem = medicamento.getDosagem() == null
-                ? "" : medicamento.getDosagem().trim();
-        String quantidade = medicamento.getQuantidadePorDose() + " por dose";
+        String dosagem = medicamento.getDosagem() == null ? "" : medicamento.getDosagem();
         TextView detalhes = new TextView(this);
-        detalhes.setText(dosagem.isEmpty() ? quantidade : dosagem + " — " + quantidade);
-        detalhes.setTextColor(Color.rgb(30, 41, 59));
-        detalhes.setTextSize(15);
-        detalhes.setPadding(0, dp(8), 0, dp(4));
-        cartao.addView(detalhes);
+        detalhes.setText(dosagem + " · " + medicamento.getQuantidadePorDose() + " por dose");
+        detalhes.setTextColor(Color.rgb(100, 116, 139));
+        detalhes.setTextSize(13);
+        detalhes.setPadding(0, dp(3), 0, dp(5));
+        informacoes.addView(detalhes);
 
-        TextView periodo = new TextView(this);
-        if (medicamento.getDataFim() == null) {
-            periodo.setText("Uso contínuo");
-        } else {
-            String dataFim = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
-                    .format(medicamento.getDataFim());
-            periodo.setText("Tratamento até " + dataFim);
-        }
-        periodo.setTextColor(Color.rgb(46, 73, 255));
-        periodo.setTextSize(14);
-        cartao.addView(periodo);
+        TextView horario = new TextView(this);
+        String frequencia = medicamento.getIntervaloHoras() == 24 ? "1 vez ao dia"
+                : medicamento.getIntervaloHoras() + " em " + medicamento.getIntervaloHoras() + " horas";
+        horario.setText(medicamento.getHorarioInicial() + "  ·  " + frequencia);
+        horario.setTextColor(Color.rgb(26, 79, 191));
+        horario.setTextSize(12);
+        informacoes.addView(horario);
+
+        TextView seta = new TextView(this);
+        seta.setText("›");
+        seta.setTextColor(Color.rgb(203, 213, 225));
+        seta.setTextSize(25);
+        cartao.addView(seta);
 
         cartao.setOnClickListener(v -> {
             Intent intent = new Intent(this, DetalheMedicamentoActivity.class);
