@@ -1,278 +1,213 @@
-# MediLembrete
+# MedLembrete
 
-Aplicativo Android desenvolvido como projeto acadêmico para ajudar pessoas a organizar medicamentos e acompanhar as doses programadas.
+Aplicativo Android desenvolvido como Projeto Integrador acadêmico. O objetivo é ajudar pessoas a organizar medicamentos, acompanhar horários e registrar doses.
 
-> **Status:** em desenvolvimento. A implementação da camada de dados com Room está no [Pull Request #3](https://github.com/gabrielcyber-dev/MediLembrete/pull/3) e precisa ser revisada e integrada antes de ser considerada parte da versão principal.
-
-## Índice
-
-- [Objetivo](#objetivo)
-- [Funcionalidades e andamento](#funcionalidades-e-andamento)
-- [Tecnologias](#tecnologias)
-- [Como executar](#como-executar)
-- [Como o aplicativo é organizado](#como-o-aplicativo-é-organizado)
-- [Conceitos importantes](#conceitos-importantes)
-- [Fluxo de funcionamento](#fluxo-de-funcionamento)
-- [Banco de dados planejado](#banco-de-dados-planejado)
-- [Como testar](#como-testar)
-- [Como contribuir com o projeto](#como-contribuir-com-o-projeto)
-- [Próximos passos](#próximos-passos)
-- [Equipe](#equipe)
+> **Status:** em desenvolvimento. A camada de dados com Room já está integrada à `master`. A integração da interface XML mais recente está em revisão no [Pull Request #7](https://github.com/gabrielcyber-dev/MediLembrete/pull/7) e ainda precisa de resolução de conflitos e validação no Android antes de entrar na versão principal.
 
 ## Objetivo
 
-O MediLembrete tem como objetivo permitir que a pessoa cadastre medicamentos, organize os horários de uso e consulte o que precisa tomar. A proposta inclui acompanhar doses pendentes, doses tomadas e histórico.
+O MedLembrete busca centralizar informações de medicamentos e apoiar a rotina de tratamento com cadastro, horários programados e acompanhamento das doses.
 
-O aplicativo é um projeto acadêmico. Ele **não substitui orientação médica** e não deve ser usado para decidir por conta própria doses ou alterações de tratamento.
+**Aviso:** o aplicativo é uma ferramenta de organização e não substitui orientação de médicos, farmacêuticos ou outros profissionais de saúde. Não utilize o aplicativo para alterar doses ou tratamentos por conta própria.
 
 ## Funcionalidades e andamento
 
-O projeto está sendo desenvolvido por etapas. A situação abaixo diferencia o que existe na branch principal (`master`) do que está proposto para integração.
-
-| Parte | Situação |
+| Funcionalidade | Situação |
 | --- | --- |
-| Tela inicial e navegação entre telas | Implementação inicial na `master` |
-| Cadastro de medicamento | Existem duas implementações que precisam ser unificadas |
-| Banco de dados local com Room | Proposto no [PR #3](https://github.com/gabrielcyber-dev/MediLembrete/pull/3); conferir o estado do PR antes de trabalhar nessa parte |
-| Horários recorrentes e registros de doses | Modelados na proposta do PR #3 |
-| Lembretes/notificações do Android | Trabalho a concluir e testar |
-| Testes e ajustes finais | Devem acompanhar a integração das funcionalidades |
+| Estrutura Android e navegação inicial | Implementação existente na branch principal |
+| Persistência local com Room/SQLite | Integrada à `master` |
+| Cadastro e validação de medicamentos | Camada de dados integrada; interface em evolução |
+| Horários associados aos medicamentos | Modelados na camada Room |
+| Registro de doses e estados (pendente, tomado, perdido) | Estrutura e consultas disponíveis na camada de dados |
+| Listagem, detalhes, edição e exclusão com a interface refinada | Em integração no [PR #7](https://github.com/gabrielcyber-dev/MediLembrete/pull/7) |
+| Notificações e lembretes Android | Ainda precisam de implementação/validação integrada |
+| Testes em dispositivo físico | Necessários após a integração da interface |
 
-**Atenção:** a documentação acompanha o desenvolvimento e pode mudar. Antes de assumir que uma funcionalidade já está disponível, confira a branch e o código que você está executando.
+A tabela descreve o estado conhecido do desenvolvimento. Um recurso modelado no banco não significa, por si só, que já esteja disponível em uma tela ou funcionando como notificação no aparelho.
 
 ## Tecnologias
 
-- **Java:** linguagem usada para a lógica do aplicativo.
-- **XML:** arquivos que descrevem a aparência das telas Android.
-- **Android SDK:** ferramentas e bibliotecas para criar o aplicativo.
-- **Gradle:** sistema que configura, compila e testa o projeto.
-- **Git:** controle de versão do código.
-- **GitHub:** hospedagem do repositório, branches e Pull Requests.
-- **Room / SQLite:** camada de persistência local proposta no PR #3. Room é uma biblioteca que facilita trabalhar com o banco SQLite.
+- **Java** — lógica da aplicação.
+- **XML** — layouts e recursos visuais Android.
+- **Android SDK** — plataforma de desenvolvimento.
+- **Gradle** — compilação, dependências e execução de testes.
+- **Room** — camada de persistência sobre SQLite.
+- **SQLite** — banco de dados local.
+- **LiveData** — observação de dados e atualização das telas.
+- **JUnit / AndroidX Test** — testes unitários e instrumentados.
+- **Git e GitHub** — versionamento, branches e revisão por Pull Requests.
 
-## Como executar
+## Requisitos para executar
 
-### Requisitos
-
-- Git;
 - JDK 17;
-- Android SDK instalado e configurado;
-- Um dispositivo Android com depuração habilitada ou um emulador;
-- Gradle Wrapper incluído no projeto.
+- Android SDK configurado;
+- Git;
+- Android Studio ou outro ambiente com as ferramentas Android configuradas;
+- Emulador Android ou dispositivo físico com depuração USB habilitada para testes instrumentados.
 
-O projeto pode ser editado em uma IDE compatível com Android/Java. O Android Studio facilita a configuração do SDK e a execução em emulador, mas o código também pode ser editado em outros editores se o ambiente Android estiver configurado.
+O projeto pode ser editado no VS Code, desde que o JDK, o Android SDK e as ferramentas de build estejam configurados corretamente.
 
-### 1. Baixe o projeto
+## Como baixar e compilar
+
+Clone o repositório:
 
 ```bash
 git clone https://github.com/gabrielcyber-dev/MediLembrete.git
 cd MediLembrete
 ```
 
-### 2. Confira o Java
+Confira a versão do Java:
 
 ```bash
 java -version
 ```
 
-Use o JDK 17 para manter o ambiente alinhado ao utilizado no desenvolvimento.
-
-### 3. Compile o aplicativo
-
-No Linux ou macOS:
+Compile no Linux/macOS:
 
 ```bash
 chmod +x gradlew
-./gradlew assembleDebug
+./gradlew clean assembleDebug
 ```
 
-No Windows, use:
+No Windows:
 
 ```bat
-gradlew.bat assembleDebug
+gradlew.bat clean assembleDebug
 ```
 
-O arquivo APK de depuração normalmente é gerado em:
+Se a compilação terminar com sucesso, o APK de depuração normalmente estará em:
 
 ```text
 app/build/outputs/apk/debug/app-debug.apk
 ```
 
-Se a compilação falhar, leia a primeira mensagem de erro relevante no terminal, confira a versão do Java e verifique se o Android SDK está instalado. Se estiver usando uma branch que ainda não inclui as dependências do Room, os comandos de teste e a configuração podem ser diferentes.
+## Testes
 
-## Como o aplicativo é organizado
-
-Os nomes e a estrutura podem variar entre branches. Estes são os principais elementos que você encontrará no projeto:
-
-| Elemento | Responsabilidade |
-| --- | --- |
-| `MainActivity.java` | Controla a tela inicial e suas interações |
-| `NovoMedicamentoActivity.java` | Implementação de tela de cadastro presente na versão inicial |
-| `CadastroMedicamentoActivity.java` | Outra tela de cadastro, usada na proposta do PR #3; precisa ser conciliada com a tela anterior |
-| `model/Medicamento.java` | Modelo Java simples usado pela implementação inicial |
-| `data/entity/` | Entidades que representam dados persistidos na proposta com Room |
-| `data/dao/` | Interfaces com operações de leitura e escrita no banco, na proposta com Room |
-| `data/AppDatabase.java` | Configuração do banco Room, na proposta com Room |
-| `data/*Repository.java` | Camada que organiza o acesso aos dados, na proposta com Room |
-| `res/layout/*.xml` | Estrutura visual das telas |
-| `res/drawable/` | Recursos visuais, como fundos e formas |
-| `app/build.gradle` | Configurações do módulo Android e dependências |
-| `gradlew` / `gradlew.bat` | Scripts do Gradle Wrapper para Linux/macOS e Windows |
-
-Para conferir os arquivos exatos da branch atual, navegue pela pasta [app/src/main](https://github.com/gabrielcyber-dev/MediLembrete/tree/master/app/src/main).
-
-## Conceitos importantes
-
-Esta seção serve como um guia rápido para quem está aprendendo Android e Java.
-
-### Activity
-
-Uma `Activity` representa uma tela ou ponto de interação do aplicativo. Por exemplo, a tela inicial e a tela de cadastro podem ser implementadas em Activities.
-
-### Intent
-
-Um `Intent` é uma mensagem usada para solicitar uma ação ao Android. No MediLembrete, ele pode ser usado para abrir a tela de cadastro a partir da tela inicial.
-
-### Modelo (`Medicamento`)
-
-Um modelo representa os dados de um medicamento, como nome, dosagem e quantidade. A implementação inicial usa um objeto Java simples. A proposta com Room possui uma entidade própria para representar os dados armazenados. Essas classes têm objetivos relacionados, mas não são automaticamente a mesma classe — por isso as duas implementações de cadastro precisam ser integradas com cuidado.
-
-### DAO
-
-DAO significa *Data Access Object*. É a camada que declara operações para consultar, inserir, atualizar ou excluir dados. Com Room, essas operações são descritas por interfaces e anotações, e a biblioteca gera parte da implementação.
-
-### Repository
-
-O repositório funciona como intermediário entre a interface e as fontes de dados. Assim, a tela solicita uma operação ao repositório em vez de concentrar regras de banco de dados dentro da Activity.
-
-### Room e SQLite
-
-SQLite é o banco de dados local do Android. Room é uma biblioteca que adiciona uma camada de abstração sobre SQLite, ajudando a definir entidades, consultas e DAOs e a detectar alguns erros durante a compilação.
-
-### XML
-
-Os arquivos XML em `res/layout` descrevem elementos visuais, como textos, campos de entrada e botões. O Java controla o comportamento desses elementos.
-
-### Gradle
-
-Gradle automatiza tarefas como baixar dependências, compilar o código e executar testes. O arquivo `app/build.gradle` configura o módulo do aplicativo; o Gradle Wrapper permite executar uma versão definida do Gradle sem precisar instalá-la globalmente.
-
-## Fluxo de funcionamento
-
-O fluxo conceitual esperado é:
-
-```text
-Pessoa usuária
-    |
-    v
-Tela (Activity + XML)
-    |
-    | lê os campos e valida as informações
-    v
-Modelo / entidade Medicamento
-    |
-    v
-Repository
-    |
-    v
-DAO
-    |
-    v
-Banco local (Room / SQLite)
-```
-
-A tela não deve precisar conhecer todos os detalhes do banco. Separar essas responsabilidades deixa o código mais fácil de testar e manter.
-
-**Importante:** na versão atual, esse fluxo ainda depende da integração entre as duas telas de cadastro e a camada de dados. Consulte o [PR #3](https://github.com/gabrielcyber-dev/MediLembrete/pull/3) para entender a implementação proposta, sem presumir que ela já foi incorporada à `master`.
-
-## Banco de dados planejado
-
-A proposta do PR #3 utiliza três grupos de dados:
-
-| Entidade/tabela | Para que serve |
-| --- | --- |
-| `medicamentos` | Guarda os dados principais de cada medicamento e o período de tratamento |
-| `horarios` | Guarda um ou mais horários recorrentes associados a um medicamento |
-| `registros_dose` | Guarda cada dose programada e seu estado, como pendente, tomada ou perdida |
-
-Um medicamento pode ter vários horários e vários registros de dose. Os registros permitem diferenciar, por exemplo, a dose das 08:00 de hoje da dose das 08:00 de ontem.
-
-A modelagem detalhada proposta está em [docs/MODELAGEM.md no PR #3](https://github.com/gabrielcyber-dev/MediLembrete/blob/guilherme/docs/MODELAGEM.md). O link aponta para a branch do Pull Request; confirme o conteúdo antes de usar como referência para a branch principal.
-
-## Como testar
-
-Depois que a implementação com Room estiver integrada, o PR #3 documenta estes comandos:
+Testes unitários:
 
 ```bash
 ./gradlew testDebugUnitTest
+```
+
+Testes instrumentados (exigem emulador ou dispositivo conectado):
+
+```bash
 ./gradlew connectedDebugAndroidTest
 ```
 
-- `testDebugUnitTest`: executa testes unitários que rodam na JVM.
-- `connectedDebugAndroidTest`: executa testes instrumentados em um dispositivo ou emulador conectado.
+No Windows, substitua `./gradlew` por `gradlew.bat`.
 
-O segundo comando exige um dispositivo/emulador configurado e acessível. Confira os resultados atuais do PR e execute os testes novamente após alterações; resultados anteriores não garantem que a versão atual continua passando.
+Execute novamente os testes depois de integrar alterações. Resultados de uma branch ou execução anterior não garantem que o código atual esteja compilando.
 
-## Como contribuir com o projeto
+## Organização da camada de dados
 
-1. **Atualize sua cópia local** antes de começar.
-2. **Confira a branch de destino** e trabalhe em uma branch própria para a tarefa.
-3. Faça alterações pequenas, com um objetivo claro.
-4. Compile e teste o que mudou.
-5. Revise o diff para confirmar que não incluiu arquivos ou mudanças não relacionadas.
-6. Envie as alterações e abra um Pull Request para revisão antes de integrar à branch principal.
-7. Não use *force-push* na branch principal. Se houver divergência entre sua cópia local e o GitHub, investigue antes de tentar sincronizar.
-
-Exemplo de atualização da branch principal:
-
-```bash
-git switch master
-git pull origin master
-```
-
-Exemplo de criação de uma branch de trabalho:
-
-```bash
-git switch -c docs/melhora-readme
-```
-
-Se você já tem uma branch com esse nome, escolha outro nome ou mude para a branch existente. Não faça alterações diretamente em uma branch compartilhada sem combinar com a equipe.
-
-### Padrão de mensagens de commit
-
-Use mensagens curtas que expliquem a intenção da alteração:
+A arquitetura separa a interface, as regras de acesso aos dados e o armazenamento:
 
 ```text
-tipo: descrição objetiva
+Activity / interface XML
+        |
+        v
+   Repository
+        |
+        v
+       DAO
+        |
+        v
+   Room / SQLite
 ```
 
-Exemplos:
+Principais componentes da camada de dados:
+
+| Componente | Responsabilidade |
+| --- | --- |
+| `data/AppDatabase.java` | Configuração do banco Room |
+| `data/Converters.java` | Conversões de tipos usadas pelo Room |
+| `data/MedicamentoRepository.java` | Operações de acesso e atualização de medicamentos |
+| `data/entity/` | Entidades persistidas: medicamento, horário e registro de dose |
+| `data/dao/` | Consultas e operações do banco |
+| `data/MedicamentoValidator.java` | Validações dos dados de medicamento |
+| `docs/MODELAGEM.md` | Documentação da modelagem de dados |
+
+O banco organiza os dados em três entidades principais:
+
+- **Medicamento:** informações do medicamento e do tratamento.
+- **Horario:** horários associados a cada medicamento.
+- **RegistroDose:** ocorrência programada de uma dose e seu estado, como pendente, tomada ou perdida.
+
+Os acessos ao banco devem ocorrer fora da thread principal para evitar travamentos na interface.
+
+## Estrutura geral do projeto
 
 ```text
-feat: adiciona validação do cadastro
-fix: corrige abertura da tela de medicamentos
+MediLembrete/
+├── app/
+│   └── src/
+│       ├── main/
+│       │   ├── java/com/example/medilembrete/
+│       │   │   └── data/
+│       │   │       ├── dao/
+│       │   │       ├── entity/
+│       │   │       ├── AppDatabase.java
+│       │   │       ├── Converters.java
+│       │   │       └── MedicamentoRepository.java
+│       │   └── res/
+│       │       ├── drawable/
+│       │       ├── layout/
+│       │       └── values/
+│       ├── test/
+│       └── androidTest/
+├── docs/
+│   └── MODELAGEM.md
+├── gradle/
+├── build.gradle
+├── settings.gradle
+├── gradlew
+└── README.md
+```
+
+A estrutura pode evoluir conforme a integração das telas e das funcionalidades.
+
+## Fluxo esperado de cadastro
+
+1. A pessoa informa os dados do medicamento na tela.
+2. A interface valida os campos obrigatórios.
+3. A Activity encaminha a operação ao repositório.
+4. O repositório utiliza os DAOs para persistir os dados no Room.
+5. As telas observam os dados e apresentam a lista atualizada.
+
+## Cuidados com o banco durante o desenvolvimento
+
+A configuração atual do Room utiliza uma estratégia de migração destrutiva enquanto o esquema está em desenvolvimento. Isso facilita testes quando a estrutura muda, mas pode apagar dados locais ao atualizar o banco. Antes de distribuir o aplicativo para uso real, essa estratégia deve ser substituída por migrações versionadas e testadas.
+
+## Git e fluxo de contribuição
+
+O desenvolvimento é organizado em branches. Faça alterações em uma branch específica da tarefa, compile e teste antes de abrir um Pull Request para revisão.
+
+Exemplos de mensagens de commit:
+
+```text
+feat: adiciona cadastro de medicamento
+fix: corrige validação da duração
 refactor: separa acesso ao banco da Activity
-test: adiciona testes para validação de medicamento
-docs: explica a arquitetura no README
-build: configura dependências do Room
+test: adiciona testes para o repositório
+docs: atualiza documentação do projeto
 ```
 
-Os prefixos são uma convenção da equipe, não comandos especiais do Git.
+Evite alterações diretas na `master` e nunca utilize force-push nela. Em caso de divergência entre branches, compare os históricos e resolva os conflitos antes de integrar.
 
-## Próximos passos
+## Próximas etapas
 
-1. Revisar e decidir sobre o [Pull Request #3](https://github.com/gabrielcyber-dev/MediLembrete/pull/3).
-2. Escolher uma única tela de cadastro e conectá-la à camada de dados.
-3. Garantir que a tela inicial liste os medicamentos realmente salvos.
-4. Implementar e testar a geração das doses e a atualização de seus estados.
-5. Desenvolver os lembretes/notificações e validar o comportamento no Android.
-6. Corrigir os problemas de layout e acessibilidade identificados nos testes.
-7. Atualizar esta documentação sempre que a arquitetura ou as funcionalidades mudarem.
+1. Resolver os conflitos entre a interface refinada e a camada Room no [PR #7](https://github.com/gabrielcyber-dev/MediLembrete/pull/7).
+2. Compilar e executar os testes unitários e instrumentados após a resolução.
+3. Validar cadastro, edição, exclusão e listagem em dispositivo Android.
+4. Implementar e testar os lembretes/notificações.
+5. Corrigir ajustes de acessibilidade e comportamento com as barras do sistema.
+6. Substituir a migração destrutiva do Room por migrações versionadas antes de uma distribuição real.
 
 ## Equipe
 
-Projeto acadêmico desenvolvido em equipe. As responsabilidades são organizadas entre interface, modelagem de dados, persistência e integração. Confirme a distribuição atual das tarefas com o grupo e registre decisões importantes nos Pull Requests.
+Projeto acadêmico desenvolvido como Projeto Integrador. As contribuições são organizadas por branches e Pull Requests no GitHub.
 
 ## Licença
 
-Projeto desenvolvido para fins acadêmicos. Nenhuma licença de código aberto específica está indicada neste README; consulte o repositório ou a equipe antes de reutilizar o código fora do projeto.
+Repositório destinado ao desenvolvimento acadêmico. Consulte a equipe responsável antes de reutilizar ou distribuir o código.
