@@ -1,0 +1,9 @@
+# Normaliza a quebra de linha no repositorio (LF), evitando conflitos falsos
+# quando cada integrante commita de um Windows/editor diferente.
+* text=auto eol=lf
+
+# Arquivos que precisam manter CRLF ou ser tratados como binarios
+*.bat text eol=crlf
+*.jar binary
+*.png binary
+*.jpg binary
