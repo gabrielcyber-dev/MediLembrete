@@ -29,6 +29,9 @@ public interface MedicamentoDao {
     @Query("SELECT * FROM medicamentos WHERE id = :id")
     LiveData<Medicamento> buscarPorId(long id);
 
+    @Query("SELECT * FROM medicamentos WHERE id = :id LIMIT 1")
+    Medicamento buscarPorIdSync(long id);
+
     /** Medicamentos cujo período de tratamento cruza o dia consultado. */
     @Query("SELECT * FROM medicamentos " +
             "WHERE data_inicio < :fim AND (data_fim IS NULL OR data_fim >= :inicio) " +
