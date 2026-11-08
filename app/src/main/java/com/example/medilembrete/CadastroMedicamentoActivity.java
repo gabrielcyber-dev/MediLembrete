@@ -163,7 +163,8 @@ public class CadastroMedicamentoActivity extends AppCompatActivity {
         btnSalvar.setEnabled(false);
         try {
             repository.cadastrar(med,calcularHorarios(),id->runOnUiThread(()->{
-                Toast.makeText(this,"Medicamento salvo!",Toast.LENGTH_SHORT).show();\n                AgendadorNotificacoes.reagendarTodos(this);
+                Toast.makeText(this,"Medicamento salvo!",Toast.LENGTH_SHORT).show();
+                AgendadorNotificacoes.reagendarTodos(this);
                 setResult(RESULT_OK); finish();
             }));
         } catch(IllegalArgumentException e) {
