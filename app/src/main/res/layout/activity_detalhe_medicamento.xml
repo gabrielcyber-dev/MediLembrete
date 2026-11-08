@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:background="#FFFFFF">
+ <ScrollView android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:fillViewport="true">
+  <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical">
+   <LinearLayout android:id="@+id/headerDetalhe" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:paddingStart="24dp" android:paddingEnd="24dp" android:paddingTop="18dp" android:paddingBottom="18dp" android:background="#FF3E00">
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical">
+     <Button android:id="@+id/btnVoltarDetalhe" android:layout_width="40dp" android:layout_height="40dp" android:text="‹" android:textSize="25sp" android:textColor="#FFFFFF" android:backgroundTint="#55FFFFFF" android:minWidth="0dp" android:minHeight="0dp" android:padding="0dp"/>
+     <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center" android:text="Detalhes" android:textColor="#FFFFFF" android:textSize="14sp"/>
+     <View android:layout_width="40dp" android:layout_height="1dp"/>
+    </LinearLayout>
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical" android:layout_marginTop="16dp">
+     <FrameLayout android:layout_width="52dp" android:layout_height="52dp" android:background="@drawable/bg_icon_badge"><TextView android:layout_width="match_parent" android:layout_height="match_parent" android:gravity="center" android:text="✚" android:textColor="#FFFFFF" android:textSize="25sp" android:textStyle="bold"/></FrameLayout>
+     <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:paddingStart="12dp">
+      <TextView android:id="@+id/txtNomeDetalhe" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Medicamento" android:textColor="#FFFFFF" android:textSize="20sp" android:textStyle="bold"/>
+      <TextView android:id="@+id/txtDosagemDetalhe" android:layout_width="match_parent" android:layout_height="wrap_content" android:textColor="#FFFFFF" android:textSize="13sp" android:alpha="0.85" android:layout_marginTop="2dp"/>
+     </LinearLayout>
+    </LinearLayout>
+    <TextView android:id="@+id/txtHorariosDetalhe" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textColor="#FFFFFF" android:textSize="12sp" android:background="#33FFFFFF" android:paddingHorizontal="10dp" android:paddingVertical="5dp" android:layout_marginTop="12dp"/>
+   </LinearLayout>
+   <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:paddingStart="24dp" android:paddingEnd="24dp" android:paddingTop="8dp" android:paddingBottom="12dp" android:background="#FFFFFF">
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical" android:paddingVertical="12dp">
+     <TextView android:layout_width="36dp" android:layout_height="36dp" android:gravity="center" android:text="◷" android:textSize="20sp" android:textColor="#6577FF" android:background="@drawable/bg_detail_icon"/>
+     <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:paddingStart="12dp"><TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="FREQUÊNCIA" android:textColor="#94A3B8" android:textSize="10sp"/><TextView android:id="@+id/txtFrequenciaDetalhe" android:layout_width="match_parent" android:layout_height="wrap_content" android:textColor="#26345D" android:textSize="13sp"/></LinearLayout>
+    </LinearLayout>
+    <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#F1F5F9"/>
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical" android:paddingVertical="12dp">
+     <TextView android:layout_width="36dp" android:layout_height="36dp" android:gravity="center" android:text="▣" android:textSize="18sp" android:textColor="#6577FF" android:background="@drawable/bg_detail_icon"/>
+     <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:paddingStart="12dp"><TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="HORÁRIO DE INÍCIO" android:textColor="#94A3B8" android:textSize="10sp"/><TextView android:id="@+id/txtHorarioInicioDetalhe" android:layout_width="match_parent" android:layout_height="wrap_content" android:textColor="#26345D" android:textSize="13sp"/></LinearLayout>
+    </LinearLayout>
+    <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#F1F5F9"/>
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical" android:paddingVertical="12dp">
+     <TextView android:layout_width="36dp" android:layout_height="36dp" android:gravity="center" android:text="≡" android:textSize="20sp" android:textColor="#6577FF" android:background="@drawable/bg_detail_icon"/>
+     <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:paddingStart="12dp"><TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="DURAÇÃO DO TRATAMENTO" android:textColor="#94A3B8" android:textSize="10sp"/><TextView android:id="@+id/txtDuracaoDetalhe" android:layout_width="match_parent" android:layout_height="wrap_content" android:textColor="#26345D" android:textSize="13sp"/></LinearLayout>
+    </LinearLayout>
+    <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#F1F5F9"/>
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical" android:paddingVertical="12dp">
+     <TextView android:layout_width="36dp" android:layout_height="36dp" android:gravity="center" android:text="≡" android:textSize="20sp" android:textColor="#6577FF" android:background="@drawable/bg_detail_icon"/>
+     <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:paddingStart="12dp"><TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="OBSERVAÇÕES" android:textColor="#94A3B8" android:textSize="10sp"/><TextView android:id="@+id/txtObservacoesDetalhe" android:layout_width="match_parent" android:layout_height="wrap_content" android:textColor="#26345D" android:textSize="13sp"/></LinearLayout>
+    </LinearLayout>
+    <TextView android:id="@+id/txtFormaDetalhe" android:layout_width="match_parent" android:layout_height="wrap_content" android:visibility="gone"/>
+   </LinearLayout>
+  </LinearLayout>
+ </ScrollView>
+ <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:paddingStart="20dp" android:paddingEnd="20dp" android:paddingTop="8dp" android:paddingBottom="16dp" android:background="#FFFFFF">
+  <Button android:id="@+id/btnEditarDetalhe" android:layout_width="match_parent" android:layout_height="48dp" android:text="✎  Editar medicamento" android:textAllCaps="false" android:textColor="#526078" android:textStyle="bold" android:backgroundTint="#F1F5F9"/>
+  <Button android:id="@+id/btnExcluirDetalhe" android:layout_width="match_parent" android:layout_height="48dp" android:layout_marginTop="8dp" android:text="▣  Excluir medicamento" android:textAllCaps="false" android:textColor="#DC2626" android:textStyle="bold" android:backgroundTint="#FEE2E2"/>
+ </LinearLayout>
+</LinearLayout>

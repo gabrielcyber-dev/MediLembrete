@@ -1,363 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<!-- match = preenchimento completo -->
-<!-- wrap = preenchimento necessário -->
-
-<!-- ScrollView permite que a tela role quando o conteúdo for maior que a tela -->
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fillViewport="true">
-    <!-- fillViewport="true": Força o layout a preencher 100% da altura da tela mesmo quando tiver poucos itens -->
-
-<LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:orientation="vertical"
-        android:padding="16dp">
-
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:text="Boa noite" />
-
-    <!-- cria um texto -->
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="MediLembrete"
-        android:textSize="24sp"
-        android:textStyle="bold" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="15dp"
-        android:text="Segunda-Feira, 14 de Setembro" />
-
-
-    <!--  1 CARD dentro do app -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="15dp"
-        android:background="@drawable/card_background"
-        android:orientation="vertical"
-        android:padding="16dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:text="Próximo lembrete"
-            android:textColor="#fff"
-            android:textSize="14sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="4dp"
-            android:text="Losartana"
-            android:textColor="#fff"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="50 mg — 1 comprimido — 08:00"
-            android:textColor="#fff"
-            android:textSize="14sp" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="15dp"
-        android:orientation="horizontal"
-        android:baselineAligned="false">
-
-
-        <!--  2º CARD dentro do app (Medicamentos) -->
-        <LinearLayout
-            android:layout_width="17dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="6dp"
-            android:layout_weight="1"
-            android:background="@drawable/bg_card_azul"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:padding="8dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="4"
-                android:textColor="#2563EB"
-                android:textSize="32sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="117dp"
-                android:layout_height="32dp"
-                android:gravity="center"
-                android:text="Medicamentos"
-                android:textColor="#000000"
-                android:textSize="13sp" />
-
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:orientation="vertical" android:background="#F0F4FF">
+    <ScrollView android:layout_width="match_parent" android:layout_height="0dp"
+        android:layout_weight="1" android:fillViewport="true" android:clipToPadding="false">
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="vertical" android:paddingStart="24dp" android:paddingEnd="24dp"
+                android:paddingTop="22dp" android:paddingBottom="22dp" android:background="#1A4FBF">
+                <TextView android:id="@+id/txtSaudacao" android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:text="Bom dia 👋" android:textColor="#93C5FD" android:textSize="14sp"/>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="MedLembrete" android:textColor="#FFFFFF" android:textSize="26sp" android:textStyle="bold"/>
+                <TextView android:id="@+id/txtDataAtual" android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:layout_marginTop="4dp"
+                    android:textColor="#BFDBFE" android:textSize="12sp"/>
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:layout_marginTop="18dp" android:padding="14dp" android:gravity="center_vertical"
+                    android:orientation="horizontal" android:background="@drawable/bg_next_reminder">
+                    <TextView android:layout_width="42dp" android:layout_height="42dp" android:gravity="center"
+                        android:text="◷" android:textColor="#FFFFFF" android:textSize="25sp"
+                        android:background="#331A4FBF"/>
+                    <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                        android:layout_weight="1" android:orientation="vertical" android:layout_marginStart="12dp">
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="Próximo lembrete" android:textColor="#BFDBFE" android:textSize="12sp"/>
+                        <TextView android:id="@+id/txtProximoLembrete" android:layout_width="match_parent"
+                            android:layout_height="wrap_content" android:text="Nenhum lembrete programado."
+                            android:textColor="#FFFFFF" android:textSize="15sp" android:textStyle="bold" android:layout_marginTop="3dp"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="horizontal" android:paddingStart="16dp" android:paddingEnd="16dp"
+                android:paddingTop="16dp" android:paddingBottom="16dp">
+                <LinearLayout android:layout_width="0dp" android:layout_height="88dp" android:layout_weight="1"
+                    android:layout_marginEnd="5dp" android:gravity="center" android:orientation="vertical"
+                    android:background="@drawable/bg_stat_blue">
+                    <TextView android:id="@+id/txtQuantidadeMedicamentos" android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:text="0" android:textColor="#1A4FBF" android:textSize="25sp" android:textStyle="bold"/>
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="Medicamentos" android:textColor="#64748B" android:textSize="10sp"/>
+                </LinearLayout>
+                <LinearLayout android:layout_width="0dp" android:layout_height="88dp" android:layout_weight="1"
+                    android:layout_marginHorizontal="5dp" android:gravity="center" android:orientation="vertical"
+                    android:background="@drawable/bg_stat_green">
+                    <TextView android:id="@+id/txtTomadosHoje" android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:text="0" android:textColor="#0F9D7A" android:textSize="25sp" android:textStyle="bold"/>
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="Tomados hoje" android:textColor="#64748B" android:textSize="10sp"/>
+                </LinearLayout>
+                <LinearLayout android:layout_width="0dp" android:layout_height="88dp" android:layout_weight="1"
+                    android:layout_marginStart="5dp" android:gravity="center" android:orientation="vertical"
+                    android:background="@drawable/bg_stat_orange">
+                    <TextView android:id="@+id/txtPendentesHoje" android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:text="0" android:textColor="#D97706" android:textSize="25sp" android:textStyle="bold"/>
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="Pendentes" android:textColor="#64748B" android:textSize="10sp"/>
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="horizontal" android:gravity="center_vertical"
+                android:paddingStart="24dp" android:paddingEnd="24dp" android:paddingBottom="12dp">
+                <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1"
+                    android:text="Meus medicamentos" android:textColor="#0F172A" android:textSize="18sp" android:textStyle="bold"/>
+                <TextView android:id="@+id/txtTotalMedicamentos" android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:text="0 total" android:textColor="#1A4FBF" android:textSize="12sp"/>
+            </LinearLayout>
+            <LinearLayout android:id="@+id/listaMedicamentos" android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:orientation="vertical" android:paddingStart="16dp" android:paddingEnd="16dp"/>
+            <Button android:id="@+id/btnAdicionar" android:layout_width="match_parent"
+                android:layout_height="60dp" android:layout_marginStart="24dp" android:layout_marginEnd="24dp"
+                android:layout_marginTop="8dp" android:layout_marginBottom="20dp"
+                android:background="@drawable/bg_botao_arredondado" android:text="＋  Adicionar medicamento"
+                android:textAllCaps="false" android:textColor="#FFFFFF" android:textSize="16sp" android:textStyle="bold"/>
         </LinearLayout>
-
-        <!--  3º CARD dentro do app (Tomados hoje) -->
-        <LinearLayout
-            android:layout_width="6dp"
-            android:layout_height="92dp"
-            android:layout_margin="6dp"
-            android:layout_weight="1"
-            android:background="@drawable/bg_card_verde"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:padding="8dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="2"
-                android:textColor="#88E788"
-                android:textSize="35sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="122dp"
-                android:layout_height="39dp"
-                android:gravity="center"
-                android:text="Tomados                hoje "
-                android:textColor="#000000"
-                android:textSize="13sp" />
-
+    </ScrollView>
+    <LinearLayout android:layout_width="match_parent" android:layout_height="64dp"
+        android:orientation="horizontal" android:gravity="center" android:background="#FFFFFF"
+        android:elevation="8dp">
+        <LinearLayout android:id="@+id/menuInicio" android:layout_width="0dp" android:layout_height="match_parent"
+            android:layout_weight="1" android:gravity="center" android:orientation="vertical" android:clickable="true" android:focusable="true">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="⌂" android:textSize="22sp" android:textColor="#1A4FBF"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Início" android:textSize="11sp" android:textStyle="bold" android:textColor="#1A4FBF"/>
         </LinearLayout>
-
-        <!--  4º CARD dentro do app (Pendentes) -->
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="90dp"
-            android:layout_margin="6dp"
-            android:layout_weight="1"
-            android:background="@drawable/bg_card_amarelo"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:padding="8dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="3"
-                android:textColor="#ff943d"
-                android:textSize="35sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="122dp"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Pendentes"
-                android:textColor="#000000"
-                android:textSize="13sp" />
-
+        <LinearLayout android:id="@+id/menuMedicamentos" android:layout_width="0dp" android:layout_height="match_parent"
+            android:layout_weight="1" android:gravity="center" android:orientation="vertical" android:clickable="true" android:focusable="true">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="▣" android:textSize="21sp" android:textColor="#94A3B8"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Medicamentos" android:textSize="11sp" android:textColor="#94A3B8"/>
         </LinearLayout>
-
+        <LinearLayout android:id="@+id/menuHistorico" android:layout_width="0dp" android:layout_height="match_parent"
+            android:layout_weight="1" android:gravity="center" android:orientation="vertical" android:clickable="true" android:focusable="true">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="◷" android:textSize="21sp" android:textColor="#94A3B8"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Histórico" android:textSize="11sp" android:textColor="#94A3B8"/>
+        </LinearLayout>
     </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="8dp"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:paddingHorizontal="16dp">
-
-        <!-- Texto da Esquerda -->
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Meus Medicamentos"
-            android:textColor="#000000"
-            android:textSize="16sp" />
-
-        <!-- Texto da Direita -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="4 total"
-            android:textColor="#2563EB"
-            android:textSize="14sp" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="15dp"
-        android:background="@drawable/bg_card_medicamento"
-        android:orientation="vertical"
-        android:padding="16dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:text="Losartana"
-            android:textColor="#1E293B"
-            android:textSize="18sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="4dp"
-            android:text="50 mg — 1 comprimido"
-            android:textColor="#1E293B"
-            android:textSize="15sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="4dp"
-            android:text="08:00        1 vez ao dia"
-            android:textColor="#2e49ff"
-            android:textSize="14sp"
-            android:textStyle="bold" />
-
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="15dp"
-        android:background="@drawable/bg_card_medicamento"
-        android:orientation="vertical"
-        android:padding="16dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:text="Metformina"
-            android:textColor="#1E293B"
-            android:textSize="18sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="4dp"
-            android:text="850 mg — 1 comprimido"
-            android:textColor="#1E293B"
-            android:textSize="15sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="4dp"
-            android:text="12:00        12 em 12 horas"
-            android:textColor="#2e49ff"
-            android:textSize="14sp"
-            android:textStyle="bold" />
-
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="15dp"
-        android:background="@drawable/bg_card_medicamento"
-        android:orientation="vertical"
-        android:padding="16dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:text="Dipirona"
-            android:textColor="#1E293B"
-            android:textSize="18sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="4dp"
-            android:text="500 mg — 1 comprimido"
-            android:textColor="#1E293B"
-            android:textSize="15sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="4dp"
-            android:text="14:00        6 em 6 horas"
-            android:textColor="#2e49ff"
-            android:textSize="14sp"
-            android:textStyle="bold" />
-
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="15dp"
-        android:background="@drawable/bg_card_medicamento"
-        android:orientation="vertical"
-        android:padding="16dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:text="Omeprazol"
-            android:textColor="#1E293B"
-            android:textSize="18sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="4dp"
-            android:text="2 mg — 1 comprimido"
-            android:textColor="#1E293B"
-            android:textSize="15sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="4dp"
-            android:text="16:00        Pós almoço"
-            android:textColor="#2e49ff"
-            android:textSize="14sp"
-            android:textStyle="bold" />
-
-
-    </LinearLayout>
-
-
-    <Button
-        android:id="@+id/btnAdicionar"
-        android:layout_width="162dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/bg_botao_arredondado"
-        android:text="Adicionar remédio"
-        android:textColor="#fff"
-        android:textSize="13sp"/>
-
 </LinearLayout>
-</ScrollView>

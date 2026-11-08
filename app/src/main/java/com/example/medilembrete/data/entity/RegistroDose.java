@@ -25,12 +25,10 @@ import androidx.room.PrimaryKey;
                 onDelete = ForeignKey.CASCADE
         ),
         indices = {
+                @Index("medicamento_id"),
                 // as consultas por dia/periodo e a busca da proxima dose
                 // filtram e ordenam por esta coluna
-                @Index("data_hora_programada"),
-                // um medicamento nao pode ter duas doses no mesmo instante:
-                // deixa a geracao das doses do dia ser idempotente
-                @Index(value = {"medicamento_id", "data_hora_programada"}, unique = true)
+                @Index("data_hora_programada")
         }
 )
 public class RegistroDose {

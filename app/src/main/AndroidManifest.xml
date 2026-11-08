@@ -1,31 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"> <!-- declara um app Android -->
-
-    <application
-        android:theme="@style/AppTheme"
-        android:label="MediLembrete"> <!-- define o nome do app -->
-
-        <activity
-            android:name=".NovoMedicamentoActivity" />
-        
-        <!-- cria uma activity chamada MainActivity -->
-        <activity  
-            android:name=".MainActivity"
-            android:exported="true">
-
-            <!-- abre a activity principal quando o usuário clicar no ícone -->
-            <intent-filter> 
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-
-        </activity>
-
-        <!-- Tela 2 - Cadastro de Medicamento -->
-        <activity
-            android:name=".CadastroMedicamentoActivity"
-            android:exported="false" />
-
-    </application>
-
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+ <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+ <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+ <application android:theme="@style/AppTheme" android:label="MedLembrete">
+  <receiver android:name=".LembreteReceiver" android:exported="false"/>
+  <receiver android:name=".BootReceiver" android:enabled="true" android:exported="false"><intent-filter><action android:name="android.intent.action.BOOT_COMPLETED"/></intent-filter></receiver>
+  <activity android:name=".DetalheMedicamentoActivity" android:exported="false"/>
+  <activity android:name=".HistoricoActivity" android:exported="false"/>
+  <activity android:name=".MeusMedicamentosActivity" android:exported="false"/>
+  <activity android:name=".MainActivity" android:exported="true"><intent-filter><action android:name="android.intent.action.MAIN"/><category android:name="android.intent.category.LAUNCHER"/></intent-filter></activity>
+  <activity android:name=".CadastroMedicamentoActivity" android:exported="false"/>
+ </application>
 </manifest>
