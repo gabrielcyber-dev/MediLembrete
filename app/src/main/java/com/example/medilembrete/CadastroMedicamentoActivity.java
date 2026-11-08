@@ -67,6 +67,10 @@ public class CadastroMedicamentoActivity extends AppCompatActivity {
         if (!duracaoTexto.isEmpty()) {
             try {
                 int duracaoDias = Integer.parseInt(duracaoTexto);
+                if (duracaoDias <= 0) {
+                    Toast.makeText(this, "A duração deve ser de pelo menos 1 dia", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 dataFim = dataInicio + TimeUnit.DAYS.toMillis(duracaoDias);
             } catch (NumberFormatException e) {
                 Toast.makeText(this, "Duração do tratamento inválida", Toast.LENGTH_SHORT).show();
