@@ -3,8 +3,8 @@ package com.example.medilembrete.data.dao;
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Insert;
-import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
+import androidx.room.Transaction;
 import androidx.room.Update;
 
 import com.example.medilembrete.data.entity.RegistroDose;
@@ -18,9 +18,22 @@ public interface RegistroDoseDao {
     @Insert
     long inserir(RegistroDose registro);
 
-    /** Insere a dose somente se ela ainda não existir para o mesmo medicamento/instante. */
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
-    long inserirSeNaoExistir(RegistroDose registro);
+    /**
+     * Insere apenas quando ainda não existe dose para o mesmo medicamento
+     * no mesmo instante. A transação evita a corrida entre consulta e insert.
+     * Retorna -1 quando a dose já existe.
+     */
+    @Transaction
+    default long inserirSeNaoExistir(RegistroDose registro) {
+        if (existeDoseNoInstante(registro.getMedicamentoId(), registro.getDataHoraProgramada())) {
+            return -1;
+        }
+        return inserir(registro);
+    }
+
+    @Query("SELECT EXISTS(SELECT 1 FROM registros_dose " +
+            "WHERE medicamento_id = :medicamentoId AND data_hora_programada = :instante)")
+    boolean existeDoseNoInstante(long medicamentoId, long instante);
 
     @Update
     void atualizar(RegistroDose registro);
