@@ -2,7 +2,7 @@ package com.example.medilembrete;
 
 import android.content.Intent;
 import android.graphics.Color;
-import android.os.Bundle;
+import android.os.Bundle;\nimport android.os.Build;\nimport android.Manifest;\nimport android.content.pm.PackageManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main);\n\n        NotificacaoUtils.criarCanal(this);\n        if (Build.VERSION.SDK_INT >= 33 && checkSelfPermission(Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {\n            requestPermissions(new String[]{Manifest.permission.POST_NOTIFICATIONS}, 701);\n        }\n        AgendadorNotificacoes.reagendarTodos(this);
 
         listaMedicamentos = findViewById(R.id.listaMedicamentos);
         txtTotalMedicamentos = findViewById(R.id.txtTotalMedicamentos);
